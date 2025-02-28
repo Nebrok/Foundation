@@ -1,6 +1,5 @@
 #include <iostream>
-#include "ownLib\Array.cpp"
-
+#include "ownLib\Array.h"
 
 int main(int argc, char* argv[])
 {
@@ -12,6 +11,6 @@ int main(int argc, char* argv[])
 
 	std::cout << "Custom Array Val at index 1: " << testArr[1] << "\n";
 	std::cout << "Custom Array Val Length: " << testArr.Length << "\n";
-
+	
 	return 0;
 }

@@ -32,5 +32,8 @@
     <ClInclude Include="source\ownLib\Array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\ownLib\List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

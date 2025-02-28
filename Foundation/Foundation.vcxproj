@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ownLib\Array.h" />
+    <ClInclude Include="source\ownLib\List.h" />
     <ClInclude Include="source\ownLib\Matrix.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
