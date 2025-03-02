@@ -1,39 +1,68 @@
 #include <iostream>
 #include "ownLib\Array.h"
 #include "ownLib\List.h"
+#include "ownLib\Vector3.h"
 
 int main(int argc, char* argv[])
 {
 	std::cout << "Hello World!" << "\n";
 
-	KTools::List<int> testArr = *new KTools::List<int>();
+	KTools::Vector3<int> testVector1 = *new KTools::Vector3<int>(1, 2, 3);
+	KTools::Vector3<int> testVector2 = *new KTools::Vector3<int>(4, 5, 6);
 
-	for (int i = 0; i < 31; i++)
-	{
-		testArr.Add(i);
-	}
+	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
+	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
 
-	std::cout << "Custom List Val Length: " << testArr.Count() << "\n";
-	std::cout << "Custom List Val Length: " << testArr.Capacity() << "\n";
-	std::cout << "Custom List ToString: " << testArr.ToString() << "\n";
+	std::cout << "Adding scalar to each vector...\n";
 
-	for (int i = 0; i < 10; i++)
-	{
-		testArr.Add(i + 100);
-	}
+	testVector1 += 2;
+	testVector2 += 4;
 
-	std::cout << "Custom List Val Length: " << testArr.Count() << "\n";
-	std::cout << "Custom List Val Length: " << testArr.Capacity() << "\n";
-	std::cout << "Custom List ToString: " << testArr.ToString() << "\n";
+	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
+	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
 
-	for (int i = 0; i < 15; i++)
-	{
-		testArr.RemoveAt(0);
-	}
+	std::cout << "Taking scalar from each vector...\n";
 
-	std::cout << "Custom List Val Length: " << testArr.Count() << "\n";
-	std::cout << "Custom List Val Length: " << testArr.Capacity() << "\n";
-	std::cout << "Custom List ToString: " << testArr.ToString() << "\n";
-	
+	testVector1 -= 2;
+	testVector2 -= 4;
+
+	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
+	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
+
+	std::cout << "Multiplying by scalar for each vector...\n";
+
+	testVector1 *= 2;
+	testVector2 *= 4;
+
+	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
+	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
+
+	std::cout << "Dividing by scalar for each vector...\n";
+
+	testVector1 /= 2;
+	testVector2 /= 4;
+
+	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
+	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
+
+	std::cout << "---------------------------\n";
+
+	std::cout << "Adding first vector to second...\n";
+
+	testVector2 += &testVector1;
+
+	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
+	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
+
+	std::cout << "Taking first vector from second...\n";
+
+	testVector2 -= testVector1;
+
+	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
+	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
+
+
+
+
 	return 0;
 }

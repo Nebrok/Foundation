@@ -132,13 +132,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
-    <ClCompile Include="source\ownLib\Array.cpp" />
-    <ClCompile Include="source\ownLib\Matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ownLib\Array.h" />
     <ClInclude Include="source\ownLib\List.h" />
     <ClInclude Include="source\ownLib\Matrix.h" />
+    <ClInclude Include="source\ownLib\Vector3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
