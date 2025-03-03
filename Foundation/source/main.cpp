@@ -3,8 +3,14 @@
 #include "ownLib\List.h"
 #include "ownLib\Vector3.h"
 
+#ifdef _DEBUG
+#define new new (_NORMAL_BLOCK, __FILE__, __LINE__)
+#endif
+
 int main(int argc, char* argv[])
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+
 	std::cout << "Hello World!" << "\n";
 
 	KTools::Vector3<int> testVector1 = *new KTools::Vector3<int>(1, 2, 3);
@@ -49,7 +55,7 @@ int main(int argc, char* argv[])
 
 	std::cout << "Adding first vector to second...\n";
 
-	testVector2 += &testVector1;
+	testVector2 += testVector1;
 
 	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
 	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
@@ -60,9 +66,6 @@ int main(int argc, char* argv[])
 
 	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
 	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
-
-
-
 
 	return 0;
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 
 namespace KTools
 {
@@ -21,20 +22,20 @@ namespace KTools
 
 		std::string ToString();
 
-		//Vector3 operator+(T);
+		Vector3* operator+(T);
 		void operator+=(T);
-		//Vector3 operator+(Vector3);
-		void operator+=(Vector3*);
+		Vector3* operator+(Vector3&);
+		void operator+=(Vector3&);
 
-		//Vector3 operator-(T);
+		Vector3* operator-(T);
 		void operator-=(T);
-		//Vector3 operator-(Vector3);
-		void operator-=(Vector3);
+		Vector3* operator-(Vector3&);
+		void operator-=(Vector3&);
 
-		//Vector3 operator*(T);
+		Vector3* operator*(T);
 		void operator*=(T);
 
-		//Vector3 operator/(T);
+		Vector3* operator/(T);
 		void operator/=(T);
 	};
 }
@@ -63,13 +64,22 @@ namespace KTools
 		y = setY;
 		z = setZ;
 	}
-
+	
 	template <typename T>
 	Vector3<T>::~Vector3()
 	{
-		
+		std::cout << "This destructor called\n";
 	}
-	
+
+
+	template <typename T>
+	Vector3<T>* Vector3<T>::operator+(T scalar)
+	{
+		Vector3<T> outVector = *new Vector3<T>(x, y, z);
+		outVector += scalar;
+		return &outVector;
+	}
+
 	template <typename T>
 	void Vector3<T>::operator+=(T scalar)
 	{
@@ -79,11 +89,27 @@ namespace KTools
 	}
 
 	template <typename T>
-	void Vector3<T>::operator+=(Vector3 *other)
+	Vector3<T>* Vector3<T>::operator+(Vector3& other)
 	{
-		x += other->x;
-		y += other->y;
-		z += other->z;
+		Vector3<T> outVector = *new Vector3<T>(x, y, z);
+		outVector += other;
+		return &outVector;
+	}
+
+	template <typename T>
+	void Vector3<T>::operator+=(Vector3& other)
+	{
+		x += other.x;
+		y += other.y;
+		z += other.z;
+	}
+
+	template <typename T>
+	Vector3<T>* Vector3<T>::operator-(T scalar)
+	{
+		Vector3<T> outVector = *new Vector3<T>(x, y, z);
+		outVector -= scalar;
+		return &outVector;
 	}
 
 	template <typename T>
@@ -95,11 +121,27 @@ namespace KTools
 	}
 
 	template <typename T>
-	void Vector3<T>::operator-=(Vector3 other)
+	Vector3<T>* Vector3<T>::operator-(Vector3& other)
+	{
+		Vector3<T> outVector = *new Vector3<T>(x, y, z);
+		outVector -= other;
+		return &outVector;
+	}
+
+	template <typename T>
+	void Vector3<T>::operator-=(Vector3& other)
 	{
 		x -= other.x;
 		y -= other.y;
 		z -= other.z;
+	}
+
+	template <typename T>
+	Vector3<T>* Vector3<T>::operator*(T scalar)
+	{
+		Vector3<T> outVector = *new Vector3<T>(x, y, z);
+		outVector *= scalar;
+		return &outVector;
 	}
 
 	template <typename T>
@@ -108,6 +150,14 @@ namespace KTools
 		x *= scalar;
 		y *= scalar;
 		z *= scalar;
+	}
+
+	template <typename T>
+	Vector3<T>* Vector3<T>::operator/(T scalar)
+	{
+		Vector3<T> outVector = *new Vector3<T>(x, y, z);
+		outVector /= scalar;
+		return &outVector;
 	}
 
 	template <typename T>
