@@ -12,6 +12,7 @@ namespace KTools
 		T y = 0;
 		T z = 0;
 
+
 	private:
 
 	public:
@@ -21,6 +22,10 @@ namespace KTools
 		~Vector3();
 
 		std::string ToString();
+
+		T DotProduct(Vector3&);
+		Vector3 CrossProduct(Vector3&);
+		Vector3<double> Normalise();
 
 		Vector3* operator+(T);
 		void operator+=(T);
@@ -37,6 +42,10 @@ namespace KTools
 
 		Vector3* operator/(T);
 		void operator/=(T);
+
+
+	private:
+		double Magnitude();
 	};
 }
 
@@ -71,6 +80,37 @@ namespace KTools
 		std::cout << "This destructor called\n";
 	}
 
+	template <typename T>
+	T Vector3<T>::DotProduct(Vector3& other)
+	{
+		T runningSum = 0;
+		runningSum += x * other.x;
+		runningSum += y * other.y;
+		runningSum += z * other.z;
+		return runningSum;
+	}
+
+	template <typename T>
+	Vector3<T> Vector3<T>::CrossProduct(Vector3& other)
+	{
+		T iComponent = y * other.z - z * other.y;
+		T jComponent = z * other.x - x * other.z;
+		T kComponent = x * other.y - y * other.x;
+		Vector3<T> newVector(iComponent, jComponent, kComponent);
+		
+		return newVector;
+	}
+
+	template <typename T>
+	Vector3<double> Vector3<T>::Normalise()
+	{
+		double xComponent = x / Magnitude();
+		double yComponent = y / Magnitude();
+		double zComponent = z / Magnitude();
+		Vector3<double> normalisedVector(xComponent, yComponent, zComponent);
+
+		return normalisedVector;
+	}
 
 	template <typename T>
 	Vector3<T>* Vector3<T>::operator+(T scalar)
@@ -177,5 +217,12 @@ namespace KTools
 		outputString += std::to_string(z);
 		outputString += " )";
 		return outputString;
+	}
+
+	template <typename T>
+	double Vector3<T>::Magnitude()
+	{
+		double magSqrd = x * x + y * y + z * z;
+		return sqrt(magSqrd);
 	}
 }
