@@ -13,8 +13,11 @@ int main(int argc, char* argv[])
 
 	std::cout << "Hello World!" << "\n";
 
-	KTools::Vector3<int> testVector1 = *new KTools::Vector3<int>(1, 2, 3);
-	KTools::Vector3<int> testVector2 = *new KTools::Vector3<int>(4, 5, 6);
+	//KTools::Vector3<int> *pTestVector1 = 
+	KTools::Vector3<int> *pTestVector2 = new KTools::Vector3<int>(4, 5, 6);
+
+	KTools::Vector3<int> testVector1(1, 2, 3);// = *new KTools::Vector3<int>(1, 2, 3);
+	KTools::Vector3<int> testVector2 = *pTestVector2;
 
 	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
 	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
@@ -66,6 +69,8 @@ int main(int argc, char* argv[])
 
 	std::cout << "First testVector ToString: " << testVector1.ToString() << "\n";
 	std::cout << "Second testVector ToString: " << testVector2.ToString() << "\n";
+
+	delete pTestVector2;
 
 	return 0;
 }
