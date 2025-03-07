@@ -25,7 +25,7 @@ public:
 
 	~Mesh()
 	{
-		_vertices->~List();
+		delete _vertices;
 	}
 };
 
@@ -33,9 +33,7 @@ int main(int argc, char* argv[])
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	Mesh* testMesh = new Mesh(10, 10);
-
-	//delete[] testMesh;
+	Mesh testMesh = Mesh(10, 10);
 
 	return 0;
 }

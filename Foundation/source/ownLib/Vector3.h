@@ -77,7 +77,7 @@ namespace KTools
 	template <typename T>
 	Vector3<T>::~Vector3()
 	{
-		std::cout << "This destructor called\n";
+		
 	}
 
 	template <typename T>

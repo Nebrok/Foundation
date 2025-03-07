@@ -12,7 +12,7 @@ namespace KTools
 
 	private:
 		T* _data;
-		int _currentIndex = 0;
+		int _currentIndex;
 
 		int _capacity = 32;
 		int _capacityResizeRatio = 2; //ie val of 2 doubles capacity when list resized
@@ -57,6 +57,7 @@ namespace KTools
 	{
 		_capacity = size;
 		_data = (T*)std::malloc(sizeof(T) * _capacity);
+		_currentIndex = 0;
 
 		if (_data == nullptr)
 			throw std::runtime_error("Error allocation memory for list initialisation");
