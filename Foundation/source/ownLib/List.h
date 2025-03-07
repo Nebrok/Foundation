@@ -25,7 +25,7 @@ namespace KTools
 		int Count() { return _currentIndex; }
 		int Capacity() { return _capacity;  }
 
-		int& operator[](int index);
+		T& operator[](int index);
 
 		void Add(T);
 		void ResizeList();
@@ -66,10 +66,6 @@ namespace KTools
 	template <typename T>
 	List<T>::~List()
 	{
-		for (int i = 0; i < _currentIndex; i++)
-		{
-			delete _data[i];
-		}
 		free(_data);
 	}
 
@@ -144,7 +140,7 @@ namespace KTools
 	}
 
 	template <typename T>
-	int& List<T>::operator[](int index)
+	T& List<T>::operator[](int index)
 	{
 		if (index < 0 or index >= _currentIndex)
 			throw std::out_of_range("Index out of range");

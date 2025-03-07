@@ -137,6 +137,7 @@
     <ClInclude Include="source\ownLib\Array.h" />
     <ClInclude Include="source\ownLib\List.h" />
     <ClInclude Include="source\ownLib\Matrix.h" />
+    <ClInclude Include="source\ownLib\Timer.h" />
     <ClInclude Include="source\ownLib\Vector3.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

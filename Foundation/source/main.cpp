@@ -2,6 +2,7 @@
 #include "ownLib\Array.h"
 #include "ownLib\List.h"
 #include "ownLib\Vector3.h"
+#include "ownLib\Timer.h"
 
 #ifdef _DEBUG
 #define new new (_NORMAL_BLOCK, __FILE__, __LINE__)
@@ -10,30 +11,65 @@
 class Mesh
 {
 private:
-	KTools::List<KTools::Vector3<int>*>* _vertices;
+	KTools::List<KTools::Vector3<int>>* _vertices;
+	int _vertexCount;
 
 public:
 	Mesh(int width, int height)
+		: _vertexCount(0)
 	{
-		_vertices = new KTools::List<KTools::Vector3<int>*>(width * height);
+		_vertices = new KTools::List<KTools::Vector3<int>>(width * height);
 		for (int i = 0; i < height * width; i++)
 		{
-			KTools::Vector3<int>* vector = new KTools::Vector3<int>(1, 1, 1);
-			_vertices->Add(vector);
+			_vertices->Add(KTools::Vector3<int>(1));
 		}
+		_vertexCount = _vertices->Count();
 	}
 
 	~Mesh()
 	{
 		delete _vertices;
 	}
+
+	int GetVertexCount() { return _vertexCount; }
+
+	KTools::List<KTools::Vector3<int>>* GetVertices() { return _vertices; }
+
+	void DotAll(Mesh& otherMesh)
+	{
+		if (_vertexCount != otherMesh.GetVertexCount())
+		{
+			std::cout << "Given mesh not of equal Vertex Count.\n";
+			return;
+		}
+
+		KTools::List<KTools::Vector3<int>>* otherVertices = otherMesh.GetVertices();
+
+
+		for (int i = 0; i < _vertexCount; i++)
+		{
+			//(*_vertices)[i].CrossProduct((*otherVertices)[i]);
+			(*_vertices)[i].Normalise();
+			//(*otherVertices)[i].Normalise();
+		}
+
+	}
+
+
 };
 
 int main(int argc, char* argv[])
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	KTools::Timer timer{};
 
-	Mesh testMesh = Mesh(10, 10);
+	int size = 2000;
+
+	timer.StartClock();
+	Mesh testMesh = Mesh(size, size);
+	Mesh testMesh2 = Mesh(size, size);
+	testMesh.DotAll(testMesh2);
+	timer.StopClock();
 
 	return 0;
 }
