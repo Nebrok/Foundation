@@ -12,7 +12,7 @@ namespace KTools
 
 	private:
 		T* _data;
-		int _currentIndex;
+		int _currentIndex = 0;
 
 		int _capacity = 32;
 		int _capacityResizeRatio = 2; //ie val of 2 doubles capacity when list resized
@@ -65,6 +65,10 @@ namespace KTools
 	template <typename T>
 	List<T>::~List()
 	{
+		for (int i = 0; i < _currentIndex; i++)
+		{
+			delete _data[i];
+		}
 		free(_data);
 	}
 
