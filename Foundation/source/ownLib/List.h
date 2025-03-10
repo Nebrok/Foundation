@@ -1,5 +1,4 @@
 #pragma once
-#include <cstdlib>
 #include <stdexcept>
 #include <string>
 
@@ -20,12 +19,17 @@ namespace KTools
 	public:
 		List();
 		List(size_t size);
+
+		//Copy constructor
+		List(const List& other);
+
 		~List();
 
 		int Count() { return _currentIndex; }
 		int Capacity() { return _capacity;  }
 
 		T& operator[](int index);
+		List<T>& operator=(const List& other);
 
 		void Add(T);
 		void ResizeList();
@@ -54,8 +58,8 @@ namespace KTools
 
 	template <typename T>
 	List<T>::List(size_t size)
+		: _capacity(size)
 	{
-		_capacity = size;
 		_data = (T*)std::malloc(sizeof(T) * _capacity);
 		_currentIndex = 0;
 
@@ -64,8 +68,20 @@ namespace KTools
 	}
 
 	template <typename T>
+	List<T>::List(const List<T>& other)
+		: _currentIndex(other._currentIndex), _capacity(other._capacity), _capacityResizeRatio(other._capacityResizeRatio)
+	{
+		_data = new T[_capacity];
+		for (int i = 0; i < _currentIndex; i++)
+		{
+			_data[i] = other._data[i];
+		}
+	}
+
+	template <typename T>
 	List<T>::~List()
 	{
+		//std::cout << "Memory Location: " << _data << "\n";
 		free(_data);
 	}
 
@@ -142,11 +158,32 @@ namespace KTools
 	template <typename T>
 	T& List<T>::operator[](int index)
 	{
+		//TODO: Should this be ">= _capacity" instead?
 		if (index < 0 or index >= _currentIndex)
 			throw std::out_of_range("Index out of range");
 
 		return _data[index];
 	}
 
+	template <typename T>
+	List<T>& List<T>::operator=(const List<T>& other)
+	{
+		delete[] _data;
+
+		if (this != &other)
+		{
+			_currentIndex = other._currentIndex;
+			_capacity = other._capacity;
+			_capacityResizeRatio = other._capacityResizeRatio;
+
+			_data = new T[_capacity];
+			for (int i = 0; i < _currentIndex; i++)
+			{
+				_data[i] = other._data[i];
+			}
+		}
+
+		return *this;
+	}
 
 }

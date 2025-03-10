@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ownLib\Array.h" />
+    <ClInclude Include="source\ownLib\LibraryInclude.h" />
     <ClInclude Include="source\ownLib\List.h" />
     <ClInclude Include="source\ownLib\Matrix.h" />
     <ClInclude Include="source\ownLib\Timer.h" />

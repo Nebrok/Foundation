@@ -35,5 +35,8 @@
     <ClInclude Include="source\ownLib\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\ownLib\LibraryInclude.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
