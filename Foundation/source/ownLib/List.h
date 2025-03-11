@@ -72,10 +72,7 @@ namespace KTools
 		: _currentIndex(other._currentIndex), _capacity(other._capacity), _capacityResizeRatio(other._capacityResizeRatio)
 	{
 		_data = new T[_capacity];
-		for (int i = 0; i < _currentIndex; i++)
-		{
-			_data[i] = other._data[i];
-		}
+		std::memcpy(_data, other._data, sizeof(T) * _currentIndex);
 	}
 
 	template <typename T>
@@ -168,19 +165,20 @@ namespace KTools
 	template <typename T>
 	List<T>& List<T>::operator=(const List<T>& other)
 	{
-		delete[] _data;
 
 		if (this != &other)
 		{
 			_currentIndex = other._currentIndex;
-			_capacity = other._capacity;
 			_capacityResizeRatio = other._capacityResizeRatio;
 
-			_data = new T[_capacity];
-			for (int i = 0; i < _currentIndex; i++)
+			if (_capacity != other._capacity)
 			{
-				_data[i] = other._data[i];
+				delete[] _data;
+				_capacity = other._capacity;
+				_data = new T[_capacity];
+
 			}
+			std::memcpy(_data, other._data, sizeof(T) * _currentIndex);
 		}
 
 		return *this;

@@ -132,8 +132,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\NeuralNetworkTest\NeuralNetwork.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\NeuralNetworkTest\NeuralNetwork.h" />
     <ClInclude Include="source\ownLib\Array.h" />
     <ClInclude Include="source\ownLib\LibraryInclude.h" />
     <ClInclude Include="source\ownLib\List.h" />

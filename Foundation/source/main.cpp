@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ownLib\LibraryInclude.h"
+#include "NeuralNetworkTest\NeuralNetwork.h"
 
 #ifdef _DEBUG
 #define new new (_NORMAL_BLOCK, __FILE__, __LINE__)
@@ -56,27 +57,20 @@ public:
 };
 
 
+
 int main(int argc, char* argv[])
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	KTools::Timer timer{};
 
-	int size = 5;
+	NeuralNetwork testNetwork(4, 6, 10, 0.5);
 
-	timer.StartClock();
-	KTools::Matrix<KTools::List<int>> testMatrix(size, size);
-	KTools::List<int> testList(3);
-	testList.Add(1);
-	testList.Add(1);
-	testList.Add(1);
-	testMatrix.SetAll(testList);
-	std::cout << "Test List main scope pre operation: " << testList.ToString() << "\n";
-	std::cout << "Test Matrix stored List pre operation: " << testMatrix.Get(1, 1).ToString() << "\n";
-	testList[1] = 2;
-	std::cout << "Test List main scope post operation: " << testList.ToString() << "\n";
-	std::cout << "Test Matrix stored List post operation: " << testMatrix.Get(1, 1).ToString() << "\n";
-	timer.StopClock();
+	KTools::Matrix<double> testInput(4, 1);
+	testInput.SetAll(1.4);
 
+	testNetwork.Query(testInput);
+
+	testNetwork.PrintNetwork();
 
 	return 0;
 }
