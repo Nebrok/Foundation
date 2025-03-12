@@ -5,6 +5,12 @@ GameManager::GameManager(int windowWidth, int windowHeight, int worldWidth, int 
 {
 	_gameWindow = new SnakeGraphics(_windowWidth, _windowHeight, _numCols, _numRows);
 	Init();
+	_snake = Snake(4, KTools::Vector3<int>(40, 30, 0));
+
+	//Deletion is handled by the StateMachine destructor
+	State* playState = new PlayState(_gameWindow);
+	_possibleStates->Add(playState);
+	_currentState = playState;
 }
 
 GameManager::~GameManager()
@@ -19,6 +25,7 @@ bool GameManager::Init()
 		std::cout << "Failed to initialise graphics!\n";
 		return false;
 	}
+
 	return true;
 }
 
@@ -26,12 +33,9 @@ void GameManager::Run()
 {
 	while (_gameWindow->UpdateWindowMessages())
 	{
-		
+		CleanUp();
 		Update();
 		Render();
-		CleanUp();
-
-		
 	}
 }
 
@@ -49,23 +53,30 @@ void GameManager::ClearMap()
 		_gameWindow->PlotTile(_numCols -1, i, 0, _wallColour, _wallColour, ' ');
 	}
 
-	for (int i = 0; i < _numRows; i++)
+	for (int i = 1; i < _numCols - 1; i++)
 	{
-		for (int j = 0; j < _numCols; j++)
+		for (int j = 1; j < _numRows - 1; j++)
 		{
-			_gameWindow->PlotTile(0, i, 0, _backgroundColour, _backgroundColour, ' ');
+			_gameWindow->PlotTile(i, j, 0, _backgroundColour, _backgroundColour, ' ');
 		}
 	}
+	_gameWindow->Render();
+
 }
 
 void GameManager::Update()
 {
-
+	if (_moved < _testMoveAmount)
+	{
+		_snake.Move();
+		_moved++;
+	}
 }
 
 void GameManager::Render()
 {
-	_gameWindow->Render();
+	//_gameWindow->Render();
+	_snake.Render(_gameWindow, _snakeColour);
 }
 
 void GameManager::CleanUp()

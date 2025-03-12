@@ -29,13 +29,13 @@ namespace KTools
 
 		Vector3* operator+(T);
 		void operator+=(T);
-		Vector3* operator+(Vector3&);
-		void operator+=(Vector3&);
+		Vector3* operator+(Vector3);
+		void operator+=(Vector3);
 
 		Vector3* operator-(T);
 		void operator-=(T);
-		Vector3* operator-(Vector3&);
-		void operator-=(Vector3&);
+		Vector3* operator-(Vector3);
+		void operator-=(Vector3);
 
 		Vector3* operator*(T);
 		void operator*=(T);
@@ -129,7 +129,7 @@ namespace KTools
 	}
 
 	template <typename T>
-	Vector3<T>* Vector3<T>::operator+(Vector3& other)
+	Vector3<T>* Vector3<T>::operator+(Vector3 other)
 	{
 		Vector3<T> outVector = *new Vector3<T>(x, y, z);
 		outVector += other;
@@ -137,7 +137,7 @@ namespace KTools
 	}
 
 	template <typename T>
-	void Vector3<T>::operator+=(Vector3& other)
+	void Vector3<T>::operator+=(Vector3 other)
 	{
 		x += other.x;
 		y += other.y;
@@ -161,7 +161,7 @@ namespace KTools
 	}
 
 	template <typename T>
-	Vector3<T>* Vector3<T>::operator-(Vector3& other)
+	Vector3<T>* Vector3<T>::operator-(Vector3 other)
 	{
 		Vector3<T> outVector = *new Vector3<T>(x, y, z);
 		outVector -= other;
@@ -169,7 +169,7 @@ namespace KTools
 	}
 
 	template <typename T>
-	void Vector3<T>::operator-=(Vector3& other)
+	void Vector3<T>::operator-=(Vector3 other)
 	{
 		x -= other.x;
 		y -= other.y;

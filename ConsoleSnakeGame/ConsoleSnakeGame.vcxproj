@@ -76,6 +76,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\dev\Foundation\Foundation\source\ownLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -90,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\dev\Foundation\Foundation\source\ownLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -104,6 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\dev\Foundation\Foundation\source\ownLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\dev\Foundation\Foundation\source\ownLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,15 +133,21 @@
   <ItemGroup>
     <ClCompile Include="source\Gamemanager.cpp" />
     <ClCompile Include="source\Main.cpp" />
+    <ClCompile Include="source\PlayState.cpp" />
     <ClCompile Include="source\Snake.cpp" />
     <ClCompile Include="source\SnakeTools\SnakeGraphics.cpp" />
     <ClCompile Include="source\SnakeTools\SnakeInput.cpp" />
+    <ClCompile Include="source\State.cpp" />
+    <ClCompile Include="source\StateMachine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Gamemanager.h" />
+    <ClInclude Include="source\PlayState.h" />
     <ClInclude Include="source\Snake.h" />
     <ClInclude Include="source\SnakeTools\SnakeGraphics.h" />
     <ClInclude Include="source\SnakeTools\SnakeInput.h" />
+    <ClInclude Include="source\State.h" />
+    <ClInclude Include="source\StateMachine.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
