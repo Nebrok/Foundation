@@ -53,13 +53,13 @@ namespace KTools
 	template <typename T>
 	T Matrix<T>::Get(int row, int col)
 	{
-		return _data[col * row + _cols];
+		return _data[col + row * _cols];
 	}
 
 	template <typename T>
 	void Matrix<T>::Set(int row, int col, T item)
 	{
-		_data[col * row + _cols] = item;
+		_data[col + row * _cols] = item;
 	}
 
 	template <typename T>
@@ -69,7 +69,7 @@ namespace KTools
 		{
 			for (int j = 0; j < _cols; j++)
 			{
-				_data[i * j + _cols] = item;
+				_data[j + i * _cols] = item;
 			}
 		}
 	}
@@ -101,7 +101,7 @@ namespace KTools
 				double runningValue = 0;
 				for (int k = 0; k < _cols; k++)
 				{
-					runningValue += _data[k * i + _cols] * other._data[j * k + other._cols];
+					runningValue += _data[k + i * _cols] * other._data[j + k * other._cols];
 				}
 				matrixProduct->Set(i, j, runningValue);
 			}
@@ -118,7 +118,7 @@ namespace KTools
 		{
 			for (int j = 0; j < _cols; j++)
 			{
-				output += std::to_string(_data[j * i + _cols]);
+				output += std::to_string(_data[j + i * _cols]);
 				output += ", ";
 			}
 			if (i != _rows - 1)
@@ -128,6 +128,4 @@ namespace KTools
 		}
 		return output;
 	}
-
-
 }

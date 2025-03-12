@@ -139,6 +139,7 @@
     <ClCompile Include="source\SnakeTools\SnakeInput.cpp" />
     <ClCompile Include="source\State.cpp" />
     <ClCompile Include="source\StateMachine.cpp" />
+    <ClCompile Include="source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Gamemanager.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="source\SnakeTools\SnakeInput.h" />
     <ClInclude Include="source\State.h" />
     <ClInclude Include="source\StateMachine.h" />
+    <ClInclude Include="source\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
