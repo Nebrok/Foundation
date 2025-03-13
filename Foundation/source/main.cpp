@@ -63,6 +63,16 @@ int main(int argc, char* argv[])
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	KTools::Timer timer{};
 
+	KTools::Matrix<int> testMatrix(2, 3);
+	testMatrix.SetAllOne();
+	testMatrix.Set(1, 2, 4);
+	testMatrix.Set(0, 1, 3);
+	std::cout << "Test Matrix1: " << testMatrix.ToString() << "\n";
+	KTools::Matrix<int>* transposedTestMatrix = testMatrix.Transpose();
+	std::cout << "Test Matrix1 Transposed: " << transposedTestMatrix->ToString() << "\n";
+
+	delete transposedTestMatrix;
+
 	NeuralNetwork testNetwork(4, 6, 10, 0.5);
 
 	KTools::Matrix<double> testInput(4, 1);

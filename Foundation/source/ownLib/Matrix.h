@@ -28,6 +28,7 @@ namespace KTools
 		void SetAllZero();
 
 		Matrix<T>* Mult(Matrix& other);
+		Matrix<T>* Transpose();
 
 		std::string ToString();
 
@@ -107,6 +108,20 @@ namespace KTools
 			}
 		}
 		return matrixProduct;
+	}
+
+	template <typename T>
+	Matrix<T>* Matrix<T>::Transpose()
+	{
+		Matrix<T>* transposed = new Matrix<T>(_cols, _rows);
+		for (int i = 0; i < _rows; i++)
+		{
+			for (int j = 0; j < _cols; j++)
+			{
+				transposed->Set(j, i, _data[j + i * _cols]);
+			}
+		}
+		return transposed;
 	}
 
 	template <typename T>
