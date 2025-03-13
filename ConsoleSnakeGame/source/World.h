@@ -2,7 +2,6 @@
 #include "SnakeTools/SnakeGraphics.h"
 #include "List.h"
 #include "GameObject.h"
-#include "Snake.h"
 #include "PlayerAgent.h"
 
 class World
@@ -10,7 +9,6 @@ class World
 private:
 	SnakeGraphics* _gameWindow;
 	KTools::List<GameObject*>* _gameObjects;
-
 	PlayerAgent* _snakeBrain;
 
 public:

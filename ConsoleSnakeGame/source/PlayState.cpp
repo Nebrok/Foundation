@@ -4,13 +4,11 @@ PlayState::PlayState(SnakeGraphics* gameWindow)
 	: State("PlayState"), _gameWindow(gameWindow)
 {
 	_gameWorld = new World(_gameWindow);
-	AddValidTransitionState(this);
 }
 
 void PlayState::EnterState()
 {
 	SnakeInput::AddKeyDownCallback(std::bind(&PlayState::OnKeyDown, this, std::placeholders::_1));
-
 }
 
 void PlayState::ExecuteState()

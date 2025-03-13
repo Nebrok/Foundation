@@ -1,6 +1,8 @@
 #include "World.h"
+#include "Snake.h"
 
 World::World()
+	: _gameObjects(nullptr), _gameWindow(nullptr), _snakeBrain(nullptr)
 {
 
 }
@@ -13,7 +15,7 @@ World::World(SnakeGraphics* gameWindow)
 	_snakeBrain = new PlayerAgent();
 	Snake* snake = new Snake(_gameWindow, 4, KTools::Vector3<int>(40, 30, 0), _snakeBrain);
 
-	_gameObjects->Add(snake);
+	_gameObjects->Add((GameObject*)snake);
 
 }
 

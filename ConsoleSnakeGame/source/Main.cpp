@@ -18,5 +18,6 @@ int main(int argc, const char* argv[])
 
 
 	delete game;
+	std::cout << "my balls itch" << std::endl;
 	return 0;
 }
