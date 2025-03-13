@@ -1,9 +1,9 @@
 #pragma once
-#include "SnakeTools/SnakeGraphics.h"
+#include "GameObject.h"
 #include "Vector3.h"
 #include "List.h"
 
-class Snake
+class Snake : public GameObject
 {
 	enum class Direction
 	{
@@ -19,11 +19,15 @@ private:
 
 public:
 	Snake();
-	Snake(int startingLength, KTools::Vector3<int> startingPosition);
+	Snake(SnakeGraphics* gameWindow);
+	Snake(SnakeGraphics* gameWindow, int startingLength, KTools::Vector3<int> startingPosition);
 
-	void Move();
+	void Update();
+	void Render();
+	void Destroy();
+
+
 	void UpdateBody();
 	void SetCurrentDirection(Direction);
 
-	void Render(SnakeGraphics* gameWindow, Color snakeColour);
 };

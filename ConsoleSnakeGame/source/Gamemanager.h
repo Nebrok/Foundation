@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "SnakeTools/SnakeGraphics.h"
+#include "SnakeTools/SnakeInput.h"
 #include "StateMachine.h"
 #include "PlayState.h"
 #include "Snake.h"
@@ -19,6 +20,7 @@ private:
 
 	int FPS = 60;
 	SnakeGraphics* _gameWindow;
+
 
 	Color _backgroundColour = Color(0, 0, 0);
 	Color _wallColour = Color(15, 200, 15);

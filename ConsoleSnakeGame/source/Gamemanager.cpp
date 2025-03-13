@@ -5,16 +5,21 @@ GameManager::GameManager(int windowWidth, int windowHeight, int worldWidth, int 
 {
 	_gameWindow = new SnakeGraphics(_windowWidth, _windowHeight, _numCols, _numRows);
 	Init();
-	_snake = Snake(4, KTools::Vector3<int>(40, 30, 0));
+	if (!SnakeInput::Init(_gameWindow))
+	{
+		std::cout << "Input System failed init.\n";
+	}
 
 	//Deletion is handled by the StateMachine destructor
 	State* playState = new PlayState(_gameWindow);
 	_possibleStates->Add(playState);
 	_currentState = playState;
+	TransitionState(playState);
 }
 
 GameManager::~GameManager()
 {
+	SnakeInput::CleanUp();
 	delete _gameWindow;
 }
 
@@ -34,8 +39,7 @@ void GameManager::Run()
 	while (_gameWindow->UpdateWindowMessages())
 	{
 		CleanUp();
-		Update();
-		Render();
+		_currentState->ExecuteState();
 	}
 }
 
@@ -66,17 +70,12 @@ void GameManager::ClearMap()
 
 void GameManager::Update()
 {
-	if (_moved < _testMoveAmount)
-	{
-		_snake.Move();
-		_moved++;
-	}
+
 }
 
 void GameManager::Render()
 {
-	//_gameWindow->Render();
-	_snake.Render(_gameWindow, _snakeColour);
+
 }
 
 void GameManager::CleanUp()

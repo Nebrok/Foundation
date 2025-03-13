@@ -1,14 +1,21 @@
 #include "Snake.h"
 
-
 Snake::Snake()
+	: GameObject(nullptr)
+{
+
+}
+
+Snake::Snake(SnakeGraphics* gameWindow)
+	: GameObject(gameWindow)
 {
 	_position = KTools::Vector3<int>(0);
 	_body = KTools::List<KTools::Vector3<int>>();
 	_currentDirection = Direction::UP;
 }
 
-Snake::Snake(int startingLength, KTools::Vector3<int> startingPosition)
+Snake::Snake(SnakeGraphics* gameWindow, int startingLength, KTools::Vector3<int> startingPosition)
+	: GameObject(gameWindow)
 {
 	_position = startingPosition;
 	_body = KTools::List<KTools::Vector3<int>>();
@@ -20,7 +27,7 @@ Snake::Snake(int startingLength, KTools::Vector3<int> startingPosition)
 	}
 }
 
-void Snake::Move()
+void Snake::Update()
 {
 	UpdateBody();
 	switch (_currentDirection)
@@ -43,6 +50,22 @@ void Snake::Move()
 	}
 }
 
+void Snake::Render()
+{
+	Color snakeColour = Color(200, 200, 10);
+	_gameWindow->PlotTile(_position.x, _position.y, 0, snakeColour, snakeColour, ' ');
+	for (int i = 0; i < _body.Count(); i++)
+	{
+		_gameWindow->PlotTile(_body[i].x, _body[i].y, 0, snakeColour, snakeColour, ' ');
+
+	}
+}
+
+void Snake::Destroy()
+{
+
+}
+
 void Snake::UpdateBody()
 {
 	for (int i = _body.Count() - 1; i > 0; i--)
@@ -57,12 +80,4 @@ void Snake::SetCurrentDirection(Direction newDirection)
 	_currentDirection = newDirection;
 }
 
-void Snake::Render(SnakeGraphics* gameWindow, Color snakeColour)
-{
-	gameWindow->PlotTile(_position.x, _position.y, 0, snakeColour, snakeColour, ' ');
-	for (int i = 0; i < _body.Count(); i++)
-	{
-		gameWindow->PlotTile(_body[i].x, _body[i].y, 0, snakeColour, snakeColour, ' ');
 
-	}
-}

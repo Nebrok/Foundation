@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Gamemanager.cpp" />
+    <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\Main.cpp" />
     <ClCompile Include="source\PlayState.cpp" />
     <ClCompile Include="source\Snake.cpp" />
@@ -143,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Gamemanager.h" />
+    <ClInclude Include="source\GameObject.h" />
     <ClInclude Include="source\PlayState.h" />
     <ClInclude Include="source\Snake.h" />
     <ClInclude Include="source\SnakeTools\SnakeGraphics.h" />
