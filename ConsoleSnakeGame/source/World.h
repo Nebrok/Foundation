@@ -3,12 +3,15 @@
 #include "List.h"
 #include "GameObject.h"
 #include "Snake.h"
+#include "PlayerAgent.h"
 
 class World
 {
 private:
 	SnakeGraphics* _gameWindow;
 	KTools::List<GameObject*>* _gameObjects;
+
+	PlayerAgent* _snakeBrain;
 
 public:
 	World();
@@ -17,5 +20,6 @@ public:
 
 	void Update();
 	void Render();
+	void KeyDown(int key);
 
 };

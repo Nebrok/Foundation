@@ -3,18 +3,17 @@
 GameManager::GameManager(int windowWidth, int windowHeight, int worldWidth, int worldHeight)
 	: _windowWidth(windowWidth), _windowHeight(windowHeight), _numCols(worldWidth), _numRows(worldHeight)
 {
+	_frameTime = 1000000 / _FPS;
+	_lastUpdateTime = std::chrono::high_resolution_clock::now();
+
 	_gameWindow = new SnakeGraphics(_windowWidth, _windowHeight, _numCols, _numRows);
 	Init();
-	if (!SnakeInput::Init(_gameWindow))
-	{
-		std::cout << "Input System failed init.\n";
-	}
+
 
 	//Deletion is handled by the StateMachine destructor
 	State* playState = new PlayState(_gameWindow);
 	_possibleStates->Add(playState);
-	_currentState = playState;
-	TransitionState(playState);
+	BeginState(playState);
 }
 
 GameManager::~GameManager()
@@ -30,6 +29,11 @@ bool GameManager::Init()
 		std::cout << "Failed to initialise graphics!\n";
 		return false;
 	}
+	if (!SnakeInput::Init(_gameWindow))
+	{
+		std::cout << "Input System failed init.\n";
+		return false;
+	}
 
 	return true;
 }
@@ -38,8 +42,16 @@ void GameManager::Run()
 {
 	while (_gameWindow->UpdateWindowMessages())
 	{
-		CleanUp();
-		_currentState->ExecuteState();
+		auto currentTime = std::chrono::high_resolution_clock::now();
+		long long timeDiffMicroseconds = std::chrono::duration_cast<std::chrono::microseconds>(currentTime - _lastUpdateTime).count();
+		if (timeDiffMicroseconds > _frameTime)
+		{
+			//std::cout << "Time Diff in microseconds: " << timeDiffMicroseconds << "\n";
+			_lastUpdateTime = std::chrono::high_resolution_clock::now();
+			CleanUp();
+			_currentState->ExecuteState();
+		}
+		
 	}
 }
 

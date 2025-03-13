@@ -14,6 +14,12 @@ StateMachine::~StateMachine()
 	delete _possibleStates;
 }
 
+void StateMachine::BeginState(State* beginState)
+{
+	_currentState = beginState;
+	_currentState->EnterState();
+}
+
 bool StateMachine::TransitionState(State* nextState)
 {
 	if (_currentState->CheckValidTransitionState(nextState))

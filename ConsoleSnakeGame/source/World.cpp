@@ -10,7 +10,8 @@ World::World(SnakeGraphics* gameWindow)
 {
 	_gameObjects = new KTools::List<GameObject*>;
 
-	Snake* snake = new Snake(_gameWindow, 4, KTools::Vector3<int>(40, 30, 0));
+	_snakeBrain = new PlayerAgent();
+	Snake* snake = new Snake(_gameWindow, 4, KTools::Vector3<int>(40, 30, 0), _snakeBrain);
 
 	_gameObjects->Add(snake);
 
@@ -23,6 +24,7 @@ World::~World()
 		delete (*_gameObjects)[i];
 	}
 	delete _gameObjects;
+	delete _snakeBrain;
 }
 
 void World::Update()
@@ -39,4 +41,9 @@ void World::Render()
 	{
 		(*_gameObjects)[i]->Render();
 	}
+}
+
+void World::KeyDown(int key)
+{
+	_snakeBrain->KeyDown(key);
 }

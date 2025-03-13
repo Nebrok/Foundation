@@ -1,10 +1,10 @@
 #pragma once
 #include <iostream>
+#include <chrono>
 #include "SnakeTools/SnakeGraphics.h"
 #include "SnakeTools/SnakeInput.h"
 #include "StateMachine.h"
 #include "PlayState.h"
-#include "Snake.h"
 
 
 class GameManager : public StateMachine
@@ -15,19 +15,18 @@ private:
 	int _numCols;
 	int _numRows;
 
-	int _testMoveAmount = 20;
-	int _moved = 0;
+	int _FPS = 60;
+	double _frameTime;
+	std::chrono::time_point<std::chrono::high_resolution_clock> _lastUpdateTime;
+	int _timeDiff;
 
-	int FPS = 60;
 	SnakeGraphics* _gameWindow;
-
 
 	Color _backgroundColour = Color(0, 0, 0);
 	Color _wallColour = Color(15, 200, 15);
 	Color _snakeColour = Color(200, 200, 10);
 	Color _appleColour = Color(200, 10, 20);
 
-	Snake _snake;
 
 private:
 	bool Init();

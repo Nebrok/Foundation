@@ -106,7 +106,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\dev\Foundation\Foundation\source\ownLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\KorbenLyall-Wilson\dev\Cpp\Foundation\Foundation\source\ownLib;C:\dev\Foundation\Foundation\source\ownLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,9 +131,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\BaseAgent.cpp" />
     <ClCompile Include="source\Gamemanager.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\Main.cpp" />
+    <ClCompile Include="source\PlayerAgent.cpp" />
     <ClCompile Include="source\PlayState.cpp" />
     <ClCompile Include="source\Snake.cpp" />
     <ClCompile Include="source\SnakeTools\SnakeGraphics.cpp" />
@@ -143,8 +145,10 @@
     <ClCompile Include="source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\BaseAgent.h" />
     <ClInclude Include="source\Gamemanager.h" />
     <ClInclude Include="source\GameObject.h" />
+    <ClInclude Include="source\PlayerAgent.h" />
     <ClInclude Include="source\PlayState.h" />
     <ClInclude Include="source\Snake.h" />
     <ClInclude Include="source\SnakeTools\SnakeGraphics.h" />

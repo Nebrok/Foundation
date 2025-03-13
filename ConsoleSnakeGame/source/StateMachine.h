@@ -14,7 +14,7 @@ public:
 	StateMachine();
 	~StateMachine();
 
-
+	void BeginState(State* startingState);
 	bool TransitionState(State* nextState);
 	void Execute();
 

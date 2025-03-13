@@ -14,8 +14,8 @@ Snake::Snake(SnakeGraphics* gameWindow)
 	_currentDirection = Direction::UP;
 }
 
-Snake::Snake(SnakeGraphics* gameWindow, int startingLength, KTools::Vector3<int> startingPosition)
-	: GameObject(gameWindow)
+Snake::Snake(SnakeGraphics* gameWindow, int startingLength, KTools::Vector3<int> startingPosition, PlayerAgent* brain)
+	: GameObject(gameWindow), Brain(brain)
 {
 	_position = startingPosition;
 	_body = KTools::List<KTools::Vector3<int>>();
@@ -29,6 +29,11 @@ Snake::Snake(SnakeGraphics* gameWindow, int startingLength, KTools::Vector3<int>
 
 void Snake::Update()
 {
+	auto currentTime = std::chrono::high_resolution_clock::now();
+	long long timeDiffMilliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - _lastUpdateTime).count();
+	if (timeDiffMilliseconds < _moveTimeMilliseconds)
+		return;
+	CheckUpdateDirection();
 	UpdateBody();
 	switch (_currentDirection)
 	{
@@ -48,6 +53,7 @@ void Snake::Update()
 		_position += KTools::Vector3<int>(1, 0, 0);
 		break;
 	}
+	_lastUpdateTime = std::chrono::high_resolution_clock::now();
 }
 
 void Snake::Render()
@@ -78,6 +84,30 @@ void Snake::UpdateBody()
 void Snake::SetCurrentDirection(Direction newDirection)
 {
 	_currentDirection = newDirection;
+}
+
+void Snake::CheckUpdateDirection()
+{
+	if (!Brain->PendingDirection())
+		return;
+	
+	int direction = Brain->GetNextDirection();
+
+	switch (direction)
+	{
+	case 0:
+		_currentDirection = Snake::Direction::UP;
+		break;
+	case 1:
+		_currentDirection = Snake::Direction::LEFT;
+		break;
+	case 2:
+		_currentDirection = Snake::Direction::DOWN;
+		break;
+	case 3:
+		_currentDirection = Snake::Direction::RIGHT;
+		break;
+	}
 }
 
 

@@ -4,8 +4,8 @@ PlayState::PlayState(SnakeGraphics* gameWindow)
 	: State("PlayState"), _gameWindow(gameWindow)
 {
 	_gameWorld = new World(_gameWindow);
+	AddValidTransitionState(this);
 }
-
 
 void PlayState::EnterState()
 {
@@ -37,5 +37,5 @@ void PlayState::Render()
 
 void PlayState::OnKeyDown(int key)
 {
-
+	_gameWorld->KeyDown(key);
 }
