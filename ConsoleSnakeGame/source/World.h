@@ -20,4 +20,6 @@ public:
 	void Render();
 	void KeyDown(int key);
 
+	void DrawEnvironment();
+
 };

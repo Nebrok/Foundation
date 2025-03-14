@@ -19,7 +19,7 @@ namespace KTools
 		Vector3();
 		Vector3(T);
 		Vector3(T, T, T);
-		~Vector3();
+		//~Vector3();
 
 		std::string ToString();
 
@@ -72,12 +72,6 @@ namespace KTools
 		x = setX;
 		y = setY;
 		z = setZ;
-	}
-	
-	template <typename T>
-	Vector3<T>::~Vector3()
-	{
-		
 	}
 
 	template <typename T>

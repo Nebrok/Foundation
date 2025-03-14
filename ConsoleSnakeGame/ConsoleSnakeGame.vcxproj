@@ -135,6 +135,7 @@
     <ClCompile Include="source\Gamemanager.cpp" />
     <ClCompile Include="source\GameObject.cpp" />
     <ClCompile Include="source\Main.cpp" />
+    <ClCompile Include="source\MainMenu.cpp" />
     <ClCompile Include="source\MenuState.cpp" />
     <ClCompile Include="source\PlayerAgent.cpp" />
     <ClCompile Include="source\PlayState.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="source\BaseAgent.h" />
     <ClInclude Include="source\Gamemanager.h" />
     <ClInclude Include="source\GameObject.h" />
+    <ClInclude Include="source\MainMenu.h" />
     <ClInclude Include="source\MenuState.h" />
     <ClInclude Include="source\PlayerAgent.h" />
     <ClInclude Include="source\PlayState.h" />

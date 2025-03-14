@@ -21,6 +21,7 @@ World::World(SnakeGraphics* gameWindow)
 
 World::~World()
 {
+
 	for (int i = 0; i < _gameObjects->Count(); i++)
 	{
 		delete (*_gameObjects)[i];
@@ -45,7 +46,13 @@ void World::Render()
 	}
 }
 
+void World::DrawEnvironment()
+{
+
+}
+
 void World::KeyDown(int key)
 {
 	_snakeBrain->KeyDown(key);
 }
+

@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "SnakeTools/SnakeGraphics.h"
 
 class GameObject
@@ -10,6 +11,7 @@ protected:
 
 public:
 	GameObject(SnakeGraphics* gameWindow);
+	virtual ~GameObject() { }
 
 	void virtual Update() = 0;
 	void virtual Render() = 0;

@@ -30,12 +30,11 @@ private:
 
 private:
 	bool Init();
-	void Update();
-	void Render();
 	void CleanUp();
 
 
 	void ClearMap();
+	void ClearWindow();
 
 public:
 	GameManager(int windowWidth, int windowHeight, int worldWidth, int worldHeight);

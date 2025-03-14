@@ -58,7 +58,7 @@ namespace KTools
 
 	template <typename T>
 	List<T>::List(size_t size)
-		: _capacity(size)
+		: _capacity((int)size)
 	{
 		_data = (T*)std::malloc(sizeof(T) * _capacity);
 		_currentIndex = 0;

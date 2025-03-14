@@ -1,13 +1,13 @@
 #include "Snake.h"
 
 Snake::Snake()
-	: GameObject(nullptr)
+	: GameObject(nullptr), Brain(nullptr), _currentDirection(Direction::UP)
 {
 
 }
 
 Snake::Snake(SnakeGraphics* gameWindow)
-	: GameObject(gameWindow)
+	: GameObject(gameWindow), Brain(nullptr), _currentDirection(Direction::UP)
 {
 	_position = KTools::Vector3<int>(0);
 	_body = KTools::List<KTools::Vector3<int>>();
@@ -17,8 +17,9 @@ Snake::Snake(SnakeGraphics* gameWindow)
 Snake::Snake(SnakeGraphics* gameWindow, int startingLength, KTools::Vector3<int> startingPosition, PlayerAgent* brain)
 	: GameObject(gameWindow), Brain(brain)
 {
+
 	_position = startingPosition;
-	_body = KTools::List<KTools::Vector3<int>>();
+	_body = KTools::List<KTools::Vector3<int>>((size_t)20);
 	_currentDirection = Direction::UP;
 
 	for (int i = 0; i < startingLength; i++)
@@ -26,6 +27,7 @@ Snake::Snake(SnakeGraphics* gameWindow, int startingLength, KTools::Vector3<int>
 		_body.Add(startingPosition);
 	}
 }
+
 
 void Snake::Update()
 {

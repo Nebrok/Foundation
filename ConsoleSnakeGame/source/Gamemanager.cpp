@@ -18,6 +18,7 @@ GameManager::GameManager(int windowWidth, int windowHeight, int worldWidth, int 
 
 GameManager::~GameManager()
 {
+	_currentState->ExitState();
 	SnakeInput::CleanUp();
 	delete _gameWindow;
 }
@@ -46,10 +47,11 @@ void GameManager::Run()
 		long long timeDiffMicroseconds = std::chrono::duration_cast<std::chrono::microseconds>(currentTime - _lastUpdateTime).count();
 		if (timeDiffMicroseconds > _frameTime)
 		{
+			ClearWindow();
+			_currentState->ExecuteState();
+
 			//std::cout << "Time Diff in microseconds: " << timeDiffMicroseconds << "\n";
 			_lastUpdateTime = std::chrono::high_resolution_clock::now();
-			CleanUp();
-			_currentState->ExecuteState();
 		}
 		
 	}
@@ -69,25 +71,19 @@ void GameManager::ClearMap()
 		_gameWindow->PlotTile(_numCols -1, i, 0, _wallColour, _wallColour, ' ');
 	}
 
-	for (int i = 1; i < _numCols - 1; i++)
+	_gameWindow->Render();
+}
+
+void GameManager::ClearWindow()
+{
+	for (int i = 0; i < _numCols; i++)
 	{
-		for (int j = 1; j < _numRows - 1; j++)
+		for (int j = 0; j < _numRows; j++)
 		{
 			_gameWindow->PlotTile(i, j, 0, _backgroundColour, _backgroundColour, ' ');
 		}
 	}
 	_gameWindow->Render();
-
-}
-
-void GameManager::Update()
-{
-
-}
-
-void GameManager::Render()
-{
-
 }
 
 void GameManager::CleanUp()

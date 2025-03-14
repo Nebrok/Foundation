@@ -1,6 +1,7 @@
 #include "StateMachine.h"
 
 StateMachine::StateMachine()
+	: _currentState(nullptr)
 {
 	_possibleStates = new KTools::List<State*>(8);
 }
