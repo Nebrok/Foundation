@@ -10,7 +10,7 @@ int main(int argc, const char* argv[])
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 
-	GameManager* game = new GameManager(1024, 720, 80, 60);
+	GameManager* game = new GameManager(1024, 720, 60, 40);
 
 
 

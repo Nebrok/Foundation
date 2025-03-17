@@ -55,16 +55,17 @@ void Snake::Update()
 		_position += KTools::Vector3<int>(1, 0, 0);
 		break;
 	}
+	Brain->CurrentDirection = (int)_currentDirection;
 	_lastUpdateTime = std::chrono::high_resolution_clock::now();
 }
 
 void Snake::Render()
 {
 	Color snakeColour = Color(200, 200, 10);
-	_gameWindow->PlotTile(_position.x, _position.y, 0, snakeColour, snakeColour, ' ');
+	_gameWindow->PlotTile(_position.x, _position.y, 1, snakeColour, snakeColour, ' ');
 	for (int i = 0; i < _body.Count(); i++)
 	{
-		_gameWindow->PlotTile(_body[i].x, _body[i].y, 0, snakeColour, snakeColour, ' ');
+		_gameWindow->PlotTile(_body[i].x, _body[i].y, 1, snakeColour, snakeColour, ' ');
 
 	}
 }

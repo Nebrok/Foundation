@@ -3,8 +3,8 @@
 #include <chrono>
 #include "SnakeTools/SnakeGraphics.h"
 #include "SnakeTools/SnakeInput.h"
-#include "StateMachine.h"
-#include "PlayState.h"
+#include "Statemachine/StateMachine.h"
+
 
 
 class GameManager : public StateMachine

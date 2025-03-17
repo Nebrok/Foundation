@@ -1,8 +1,8 @@
 #pragma once
-#include "SnakeTools/SnakeGraphics.h"
-#include "SnakeTools/SnakeInput.h"
+#include "../SnakeTools/SnakeGraphics.h"
+#include "../SnakeTools/SnakeInput.h"
 #include "State.h"
-#include "World.h"
+#include "../World.h"
 
 
 class PlayState: public State

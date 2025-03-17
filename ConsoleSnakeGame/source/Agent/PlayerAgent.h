@@ -4,6 +4,9 @@
 
 class PlayerAgent : public BaseAgent
 {
+public: 
+	int CurrentDirection = 0;
+
 private:
 	KTools::List<int>* _directionQueue;
 
@@ -14,4 +17,6 @@ public:
 	int GetNextDirection() override;
 	void KeyDown(int key) override;
 	bool PendingDirection();
+
+	bool CheckInputValidity(int direction);
 };

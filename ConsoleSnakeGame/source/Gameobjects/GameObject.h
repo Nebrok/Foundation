@@ -1,6 +1,5 @@
 #pragma once
-#include <iostream>
-#include "SnakeTools/SnakeGraphics.h"
+#include "../SnakeTools/SnakeGraphics.h"
 
 class GameObject
 {

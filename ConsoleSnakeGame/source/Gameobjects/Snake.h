@@ -3,16 +3,16 @@
 #include "GameObject.h"
 #include "Vector3.h"
 #include "List.h"
-#include "PlayerAgent.h"
+#include "../Agent/PlayerAgent.h"
 
 class Snake : public GameObject
 {
 public:
 	enum class Direction
 	{
-		UP, DOWN, LEFT, RIGHT
+		UP, LEFT, DOWN, RIGHT
 	};
-
+	
 	PlayerAgent* Brain;
 
 private:
@@ -21,7 +21,7 @@ private:
 
 	Direction _currentDirection;
 
-	int _moveTimeMilliseconds = 80;
+	int _moveTimeMilliseconds = 150;
 	std::chrono::time_point<std::chrono::high_resolution_clock> _lastUpdateTime;
 
 public:

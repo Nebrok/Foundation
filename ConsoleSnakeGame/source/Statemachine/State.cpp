@@ -1,4 +1,5 @@
 #include "State.h"
+#include "StateMachine.h"
 
 State::State(const char* stateName)
 	: StateName(stateName)
@@ -26,5 +27,17 @@ bool State::CheckValidTransitionState(State* newState)
 		}
 	}
 	return false;
+}
+
+void State::SetStateTransition(State* newState)
+{
+	_pendingTransition = true;
+	_pendingState = newState;
+}
+
+void State::ClearPendingTransition()
+{
+	_pendingState = nullptr;
+	_pendingTransition = false;
 }
 

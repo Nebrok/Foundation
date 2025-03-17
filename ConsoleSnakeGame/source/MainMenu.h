@@ -1,17 +1,37 @@
 #pragma once
-
+#include "SnakeTools/SnakeGraphics.h"
 
 class MainMenu
 {
-	int numMenuItems;
+private:
+	SnakeGraphics* _gameWindow;
+	int _numMenuItems = 3;
+	int _currentHighlightedButton = 0;
+
+	const wchar_t* buttonText[3];
+
+
+	int _worldCols;
+	int _worldRows;
+
+
+	Color _wallColour = Color(15, 200, 15);
+
+	bool _startGame = false;
 
 
 public:
-	MainMenu();
+	MainMenu(SnakeGraphics* gameWindow);
 	~MainMenu();
 
 	void Update();
 	void Render();
-	void OnKeyDown();
+	void OnKeyDown(int key);
 
+	bool GameStart() { return _startGame; };
+
+private:
+	void DrawWalls();
+	void Play();
+	void Select();
 };

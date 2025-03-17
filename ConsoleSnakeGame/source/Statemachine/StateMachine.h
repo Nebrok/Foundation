@@ -1,7 +1,7 @@
 #pragma once
 #include "List.h"
-#include "State.h"
 
+class State;
 
 class StateMachine
 {

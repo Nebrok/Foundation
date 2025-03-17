@@ -1,4 +1,6 @@
 #include "StateMachine.h"
+#include "State.h"
+
 
 StateMachine::StateMachine()
 	: _currentState(nullptr)
@@ -39,4 +41,7 @@ bool StateMachine::TransitionState(State* nextState)
 void StateMachine::Execute()
 {
 	_currentState->ExecuteState();
+	if (_currentState->CheckPendingStateTransition())
+		TransitionState(_currentState->GetPendingTransitionState());
+
 }

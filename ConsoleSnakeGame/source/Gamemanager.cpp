@@ -1,4 +1,7 @@
 #include "Gamemanager.h"
+#include "Statemachine/PlayState.h"
+#include "Statemachine/MenuState.h"
+
 
 GameManager::GameManager(int windowWidth, int windowHeight, int worldWidth, int worldHeight)
 	: _windowWidth(windowWidth), _windowHeight(windowHeight), _numCols(worldWidth), _numRows(worldHeight)
@@ -13,12 +16,16 @@ GameManager::GameManager(int windowWidth, int windowHeight, int worldWidth, int 
 	//Deletion is handled by the StateMachine destructor
 	State* playState = new PlayState(_gameWindow);
 	_possibleStates->Add(playState);
-	BeginState(playState);
+	State* menuState = new MenuState(_gameWindow, playState);
+	_possibleStates->Add(menuState);
+
+	BeginState(menuState);
 }
 
 GameManager::~GameManager()
 {
 	_currentState->ExitState();
+
 	SnakeInput::CleanUp();
 	delete _gameWindow;
 }
@@ -48,7 +55,7 @@ void GameManager::Run()
 		if (timeDiffMicroseconds > _frameTime)
 		{
 			ClearWindow();
-			_currentState->ExecuteState();
+			Execute();
 
 			//std::cout << "Time Diff in microseconds: " << timeDiffMicroseconds << "\n";
 			_lastUpdateTime = std::chrono::high_resolution_clock::now();

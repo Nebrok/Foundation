@@ -131,34 +131,43 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\BaseAgent.cpp" />
+    <ClCompile Include="source\Agent\BaseAgent.cpp" />
     <ClCompile Include="source\Gamemanager.cpp" />
-    <ClCompile Include="source\GameObject.cpp" />
+    <ClCompile Include="source\Gameobjects\GameObject.cpp" />
+    <ClCompile Include="source\Gameobjects\Grid.cpp" />
+    <ClCompile Include="source\Gameobjects\Snake.cpp" />
     <ClCompile Include="source\Main.cpp" />
     <ClCompile Include="source\MainMenu.cpp" />
-    <ClCompile Include="source\MenuState.cpp" />
-    <ClCompile Include="source\PlayerAgent.cpp" />
-    <ClCompile Include="source\PlayState.cpp" />
-    <ClCompile Include="source\Snake.cpp" />
+    <ClCompile Include="source\Agent\PlayerAgent.cpp" />
     <ClCompile Include="source\SnakeTools\SnakeGraphics.cpp" />
     <ClCompile Include="source\SnakeTools\SnakeInput.cpp" />
-    <ClCompile Include="source\State.cpp" />
-    <ClCompile Include="source\StateMachine.cpp" />
+    <ClCompile Include="source\Statemachine\MenuState.cpp" />
+    <ClCompile Include="source\Statemachine\PlayState.cpp" />
+    <ClCompile Include="source\Statemachine\State.cpp" />
+    <ClCompile Include="source\Statemachine\StateMachine.cpp" />
     <ClCompile Include="source\World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\BaseAgent.h" />
+    <ClInclude Include="source\Agent\BaseAgent.h" />
     <ClInclude Include="source\Gamemanager.h" />
     <ClInclude Include="source\GameObject.h" />
+    <ClInclude Include="source\Gameobjects\GameObject.h" />
+    <ClInclude Include="source\Gameobjects\Grid.h" />
+    <ClInclude Include="source\Gameobjects\Snake.h" />
+    <ClInclude Include="source\Grid.h" />
     <ClInclude Include="source\MainMenu.h" />
     <ClInclude Include="source\MenuState.h" />
-    <ClInclude Include="source\PlayerAgent.h" />
+    <ClInclude Include="source\Agent\PlayerAgent.h" />
     <ClInclude Include="source\PlayState.h" />
     <ClInclude Include="source\Snake.h" />
     <ClInclude Include="source\SnakeTools\SnakeGraphics.h" />
     <ClInclude Include="source\SnakeTools\SnakeInput.h" />
     <ClInclude Include="source\State.h" />
     <ClInclude Include="source\StateMachine.h" />
+    <ClInclude Include="source\Statemachine\MenuState.h" />
+    <ClInclude Include="source\Statemachine\PlayState.h" />
+    <ClInclude Include="source\Statemachine\State.h" />
+    <ClInclude Include="source\Statemachine\StateMachine.h" />
     <ClInclude Include="source\World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

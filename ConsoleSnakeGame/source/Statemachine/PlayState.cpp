@@ -1,14 +1,15 @@
 #include "PlayState.h"
 
 PlayState::PlayState(SnakeGraphics* gameWindow) 
-	: State("PlayState"), _gameWindow(gameWindow)
+	: State("PlayState"), _gameWindow(gameWindow), _gameWorld(nullptr)
 {
-	_gameWorld = new World(_gameWindow);
+	
 }
 
 void PlayState::EnterState()
 {
 	SnakeInput::AddKeyDownCallback(std::bind(&PlayState::OnKeyDown, this, std::placeholders::_1));
+	_gameWorld = new World(_gameWindow);
 }
 
 void PlayState::ExecuteState()
@@ -19,6 +20,7 @@ void PlayState::ExecuteState()
 
 void PlayState::ExitState()
 {
+	ClearPendingTransition();
 	SnakeInput::RemoveKeyDownCallback(std::bind(&PlayState::OnKeyDown, this, std::placeholders::_1));
 	delete _gameWorld;
 }
