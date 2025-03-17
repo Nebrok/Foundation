@@ -32,7 +32,7 @@ public:
 	void Update();
 	void Render();
 	void Destroy();
-
+	bool PointCollides(KTools::Vector3<int> otherPoint) override;
 
 	void UpdateBody();
 	void SetCurrentDirection(Direction);

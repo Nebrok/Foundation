@@ -28,7 +28,6 @@ Snake::Snake(SnakeGraphics* gameWindow, int startingLength, KTools::Vector3<int>
 	}
 }
 
-
 void Snake::Update()
 {
 	auto currentTime = std::chrono::high_resolution_clock::now();
@@ -73,6 +72,18 @@ void Snake::Render()
 void Snake::Destroy()
 {
 
+}
+
+bool Snake::PointCollides(KTools::Vector3<int> otherPoint)
+{
+	if (otherPoint == _position)
+		return true;
+	for (int i = 0; i < _body.Count(); i++)
+	{
+		if (otherPoint == _body[i])
+			return true;
+	}
+	return false;
 }
 
 void Snake::UpdateBody()

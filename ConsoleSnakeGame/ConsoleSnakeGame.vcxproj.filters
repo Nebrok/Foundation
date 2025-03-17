@@ -60,6 +60,12 @@
     <ClCompile Include="source\Statemachine\StateMachine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Statemachine\EndState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\EndScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\SnakeTools\SnakeGraphics.h">
@@ -123,6 +129,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\Statemachine\StateMachine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Statemachine\EndState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\EndScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

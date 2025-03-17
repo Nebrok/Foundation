@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\Agent\BaseAgent.cpp" />
+    <ClCompile Include="source\EndScreen.cpp" />
     <ClCompile Include="source\Gamemanager.cpp" />
     <ClCompile Include="source\Gameobjects\GameObject.cpp" />
     <ClCompile Include="source\Gameobjects\Grid.cpp" />
@@ -141,6 +142,7 @@
     <ClCompile Include="source\Agent\PlayerAgent.cpp" />
     <ClCompile Include="source\SnakeTools\SnakeGraphics.cpp" />
     <ClCompile Include="source\SnakeTools\SnakeInput.cpp" />
+    <ClCompile Include="source\Statemachine\EndState.cpp" />
     <ClCompile Include="source\Statemachine\MenuState.cpp" />
     <ClCompile Include="source\Statemachine\PlayState.cpp" />
     <ClCompile Include="source\Statemachine\State.cpp" />
@@ -149,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\Agent\BaseAgent.h" />
+    <ClInclude Include="source\EndScreen.h" />
     <ClInclude Include="source\Gamemanager.h" />
     <ClInclude Include="source\GameObject.h" />
     <ClInclude Include="source\Gameobjects\GameObject.h" />
@@ -164,6 +167,7 @@
     <ClInclude Include="source\SnakeTools\SnakeInput.h" />
     <ClInclude Include="source\State.h" />
     <ClInclude Include="source\StateMachine.h" />
+    <ClInclude Include="source\Statemachine\EndState.h" />
     <ClInclude Include="source\Statemachine\MenuState.h" />
     <ClInclude Include="source\Statemachine\PlayState.h" />
     <ClInclude Include="source\Statemachine\State.h" />

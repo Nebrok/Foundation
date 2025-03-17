@@ -2,7 +2,6 @@
 #include "Gameobjects/Snake.h"
 #include "Gameobjects/Grid.h"
 
-
 World::World()
 	: _gameObjects(nullptr), _gameWindow(nullptr), _snakeBrain(nullptr)
 {
@@ -31,7 +30,6 @@ World::World(SnakeGraphics* gameWindow)
 
 World::~World()
 {
-
 	for (int i = 0; i < _gameObjects->Count(); i++)
 	{
 		delete (*_gameObjects)[i];
@@ -50,26 +48,9 @@ void World::Update()
 
 void World::Render()
 {
-	//DrawEnvironment();
-
 	for (int i = 0; i < _gameObjects->Count(); i++)
 	{
 		(*_gameObjects)[i]->Render();
-	}
-}
-
-void World::DrawEnvironment()
-{
-	for (int i = 0; i < _worldCols; i++)
-	{
-		_gameWindow->PlotTile(i, 0, 0, _wallColour, _wallColour, ' ');
-		_gameWindow->PlotTile(i, _worldRows - 1, 0, _wallColour, _wallColour, ' ');
-	}
-
-	for (int i = 0; i < _worldRows; i++)
-	{
-		_gameWindow->PlotTile(0, i, 0, _wallColour, _wallColour, ' ');
-		_gameWindow->PlotTile(_worldCols - 1, i, 0, _wallColour, _wallColour, ' ');
 	}
 }
 

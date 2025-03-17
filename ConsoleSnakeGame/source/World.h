@@ -28,7 +28,4 @@ public:
 	void KeyDown(int key);
 
 	void CreateLevel(Grid* worldGrid);
-
-	void DrawEnvironment();
-
 };

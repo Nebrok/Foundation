@@ -43,6 +43,7 @@ namespace KTools
 		Vector3* operator/(T);
 		void operator/=(T);
 
+		bool operator== (Vector3);
 
 	private:
 		double Magnitude();
@@ -200,6 +201,18 @@ namespace KTools
 		x /= scalar;
 		y /= scalar;
 		z /= scalar;
+	}
+
+	template <typename T>
+	bool Vector3<T>::operator==(Vector3<T> other)
+	{
+		if (x != other.x)
+			return false;
+		if (y != other.y)
+			return false;
+		if (z != other.z)
+			return false;
+		return true;
 	}
 
 	template <typename T>
