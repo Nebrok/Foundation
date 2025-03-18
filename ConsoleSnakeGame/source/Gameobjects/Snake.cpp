@@ -14,8 +14,8 @@ Snake::Snake(SnakeGraphics* gameWindow)
 	_currentDirection = Direction::UP;
 }
 
-Snake::Snake(SnakeGraphics* gameWindow, int startingLength, KTools::Vector3<int> startingPosition, PlayerAgent* brain)
-	: GameObject(gameWindow), Brain(brain)
+Snake::Snake(SnakeGraphics* gameWindow, World* world, int startingLength, KTools::Vector3<int> startingPosition, PlayerAgent* brain)
+	: GameObject(gameWindow, world), Brain(brain)
 {
 
 	_position = startingPosition;
@@ -34,27 +34,17 @@ void Snake::Update()
 	long long timeDiffMilliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - _lastUpdateTime).count();
 	if (timeDiffMilliseconds < _moveTimeMilliseconds)
 		return;
+	
 	CheckUpdateDirection();
+
+	CheckForCollision();
+
 	UpdateBody();
-	switch (_currentDirection)
-	{
-	case Direction::UP:
-		_position += KTools::Vector3<int>(0, -1, 0);
-		break;
+	UpdatePosition(_currentDirection);
 
-	case Direction::DOWN:
-		_position += KTools::Vector3<int>(0, 1, 0);
-		break;
-
-	case Direction::LEFT:
-		_position += KTools::Vector3<int>(-1, 0, 0);
-		break;
-
-	case Direction::RIGHT:
-		_position += KTools::Vector3<int>(1, 0, 0);
-		break;
-	}
 	Brain->CurrentDirection = (int)_currentDirection;
+	
+	//Update internal clock
 	_lastUpdateTime = std::chrono::high_resolution_clock::now();
 }
 
@@ -95,6 +85,28 @@ void Snake::UpdateBody()
 	_body[0] = _position;
 }
 
+void Snake::UpdatePosition(Snake::Direction direction)
+{
+	switch (direction)
+	{
+	case Direction::UP:
+		_position += KTools::Vector3<int>(0, -1, 0);
+		break;
+
+	case Direction::DOWN:
+		_position += KTools::Vector3<int>(0, 1, 0);
+		break;
+
+	case Direction::LEFT:
+		_position += KTools::Vector3<int>(-1, 0, 0);
+		break;
+
+	case Direction::RIGHT:
+		_position += KTools::Vector3<int>(1, 0, 0);
+		break;
+	}
+}
+
 void Snake::SetCurrentDirection(Direction newDirection)
 {
 	_currentDirection = newDirection;
@@ -122,6 +134,11 @@ void Snake::CheckUpdateDirection()
 		_currentDirection = Snake::Direction::RIGHT;
 		break;
 	}
+}
+
+bool Snake::CheckForCollision()
+{
+	return false;
 }
 
 

@@ -3,7 +3,7 @@
 
 PlayerAgent::PlayerAgent()
 {
-	_directionQueue = new KTools::List<int>(6);
+	_directionQueue = new KTools::List<int>(32);
 }
 
 PlayerAgent::~PlayerAgent()
@@ -13,7 +13,7 @@ PlayerAgent::~PlayerAgent()
 
 void PlayerAgent::KeyDown(int key)
 {
-	if (_directionQueue->Count() >= 6)
+	if (_directionQueue->Count() >= 20)
 	{
 		return;
 	}

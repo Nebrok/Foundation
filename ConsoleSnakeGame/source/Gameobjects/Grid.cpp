@@ -1,8 +1,8 @@
 #include "../SnakeTools/SnakeGraphics.h"
 #include "Grid.h"
 
-Grid::Grid(SnakeGraphics* gameWindow)
-	: GameObject(gameWindow)
+Grid::Grid(SnakeGraphics* gameWindow, World* world)
+	: GameObject(gameWindow, world)
 {
 	_gridCols = gameWindow->GetNumColumns();
 	_gridRows = gameWindow->GetNumRows();
@@ -56,4 +56,9 @@ void Grid::Render()
 
 void Grid::Destroy()
 {
+}
+
+bool Grid::PointCollides(KTools::Vector3<int> other)
+{
+	return false;
 }

@@ -2,15 +2,18 @@
 #include "../SnakeTools/SnakeGraphics.h"
 #include "Vector3.h"
 
+class World;
+
 class GameObject
 {
 protected:
 	bool _isDestroyed;
 	SnakeGraphics* _gameWindow;
+	World* _world;
 
 
 public:
-	GameObject(SnakeGraphics* gameWindow);
+	GameObject(SnakeGraphics* gameWindow = nullptr, World* world = nullptr);
 	virtual ~GameObject() { }
 
 	bool virtual PointCollides(KTools::Vector3<int> otherPoint) = 0;

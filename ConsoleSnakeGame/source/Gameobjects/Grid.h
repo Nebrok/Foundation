@@ -27,7 +27,7 @@ private:
 
 
 public:
-	Grid(SnakeGraphics* gameWindow = nullptr);
+	Grid(SnakeGraphics* gameWindow = nullptr, World* world = nullptr);
 	~Grid();
 
 	void LoadLevel(bool* levelData);
@@ -36,6 +36,7 @@ public:
 	void Update() override;
 	void Render() override;
 	void Destroy() override;
+	bool PointCollides(KTools::Vector3<int> other) override;
 
 
 };

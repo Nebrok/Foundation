@@ -16,13 +16,13 @@ World::World(SnakeGraphics* gameWindow)
 
 	_gameObjects = new KTools::List<GameObject*>;
 
-	Grid* worldGrid = new Grid(_gameWindow);
+	Grid* worldGrid = new Grid(_gameWindow, this);
 	CreateLevel(worldGrid);
 	_gameObjects->Add((GameObject*)worldGrid);
 
 
 	_snakeBrain = new PlayerAgent();
-	Snake* snake = new Snake(_gameWindow, 4, KTools::Vector3<int>(30, 20, 0), _snakeBrain);
+	Snake* snake = new Snake(_gameWindow, this, 4, KTools::Vector3<int>(30, 20, 0), _snakeBrain);
 
 	_gameObjects->Add((GameObject*)snake);
 
