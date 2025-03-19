@@ -76,6 +76,15 @@ bool Snake::PointCollides(KTools::Vector3<int> otherPoint)
 	return false;
 }
 
+void Snake::OnCollision(GameObject* otherObject)
+{
+	if (otherObject->PointCollides(_position))
+	{
+		std::cout << "Snake head colliding with gameobject" << "\n";
+	}
+}
+
+
 void Snake::UpdateBody()
 {
 	for (int i = _body.Count() - 1; i > 0; i--)

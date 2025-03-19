@@ -1,21 +1,34 @@
 #pragma once
-#include "GameObject.h"
 #include "Vector3.h"
+#include "List.h"
 
 class SnakeGrphics;
+class GameObject;
 
-class Grid : public GameObject
+class Grid
 {
 	struct Tile
 	{
 		KTools::Vector3<int> Position;
-		bool Occupied = false;
+		KTools::List<GameObject*>* OccupiedBy = nullptr;
 
-		Tile(int x = 0, int y = 0, bool occupied = false)
+		Tile(int x = 0, int y = 0)
 		{
 			Position = KTools::Vector3<int>(x, y, 0);
-			Occupied = occupied;
+			OccupiedBy = new KTools::List<GameObject*>();
 		}
+
+		~Tile()
+		{
+			delete OccupiedBy;
+		}
+
+		void operator=(const Tile& other)
+		{
+			Position = other.Position;
+			OccupiedBy = new KTools::List<GameObject*>(*other.OccupiedBy);
+		}
+
 	};
 
 private:
@@ -27,16 +40,14 @@ private:
 
 
 public:
-	Grid(SnakeGraphics* gameWindow = nullptr, World* world = nullptr);
+	Grid(SnakeGraphics* gameWindow = nullptr);
 	~Grid();
 
-	void LoadLevel(bool* levelData);
-	void SetTileOccupancy(int x, int y, bool occupied);
+	void SetTileOccupancy(int x, int y, GameObject* occupier);
 
-	void Update() override;
-	void Render() override;
-	void Destroy() override;
-	bool PointCollides(KTools::Vector3<int> other) override;
+	void Update();
+	bool PointCollides(KTools::Vector3<int> other);
+	void OnCollision(GameObject* otherObject);
 
 
 };

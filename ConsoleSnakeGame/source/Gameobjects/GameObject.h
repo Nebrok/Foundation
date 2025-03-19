@@ -17,6 +17,7 @@ public:
 	virtual ~GameObject() { }
 
 	bool virtual PointCollides(KTools::Vector3<int> otherPoint) = 0;
+	void virtual OnCollision(GameObject* otherObject) = 0;
 
 	void virtual Update() = 0;
 	void virtual Render() = 0;

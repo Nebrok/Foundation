@@ -5,13 +5,18 @@
 #include "Agent/PlayerAgent.h"
 
 class Grid;
+class Wall;
 
 class World
 {
 private:
 	SnakeGraphics* _gameWindow;
 	KTools::List<GameObject*>* _gameObjects;
+	Grid* _worldGrid;
+
 	PlayerAgent* _snakeBrain;
+	Wall* _defaultWall;
+
 
 	int _worldCols = 0;
 	int _worldRows = 0;

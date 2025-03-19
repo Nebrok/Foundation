@@ -137,6 +137,7 @@
     <ClCompile Include="source\Gameobjects\GameObject.cpp" />
     <ClCompile Include="source\Gameobjects\Grid.cpp" />
     <ClCompile Include="source\Gameobjects\Snake.cpp" />
+    <ClCompile Include="source\Gameobjects\Wall.cpp" />
     <ClCompile Include="source\Main.cpp" />
     <ClCompile Include="source\MainMenu.cpp" />
     <ClCompile Include="source\Agent\PlayerAgent.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="source\Gameobjects\GameObject.h" />
     <ClInclude Include="source\Gameobjects\Grid.h" />
     <ClInclude Include="source\Gameobjects\Snake.h" />
+    <ClInclude Include="source\Gameobjects\Wall.h" />
     <ClInclude Include="source\Grid.h" />
     <ClInclude Include="source\MainMenu.h" />
     <ClInclude Include="source\MenuState.h" />

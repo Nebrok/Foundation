@@ -1,8 +1,7 @@
 #include "../SnakeTools/SnakeGraphics.h"
 #include "Grid.h"
 
-Grid::Grid(SnakeGraphics* gameWindow, World* world)
-	: GameObject(gameWindow, world)
+Grid::Grid(SnakeGraphics* gameWindow)
 {
 	_gridCols = gameWindow->GetNumColumns();
 	_gridRows = gameWindow->GetNumRows();
@@ -13,7 +12,7 @@ Grid::Grid(SnakeGraphics* gameWindow, World* world)
 	{
 		int x = i % _gridCols;
 		int y = i / _gridCols;
-		_gridData[i] = Tile(x, y, false);;
+		_gridData[i] = Tile(x, y);
 	}
 
 }
@@ -23,42 +22,29 @@ Grid::~Grid()
 	delete[] _gridData;
 }
 
-void Grid::LoadLevel(bool* levelData)
+void Grid::SetTileOccupancy(int x, int y, GameObject* occupier)
 {
-	for (int i = 0; i < _gridDataLength; i++)
-	{
-		if (levelData[i])
-			_gridData[i].Occupied = true;
-	}
-}
-
-void Grid::SetTileOccupancy(int x, int y, bool occupied)
-{
-	_gridData[y * _gridCols + x].Occupied = occupied;
+	_gridData[y * _gridCols + x].OccupiedBy->Add(occupier);
 }
 
 void Grid::Update()
 {
 }
 
-void Grid::Render()
-{
-	Color wallColour = Color(15, 200, 15);
-	for (int i = 0; i < _gridDataLength; i++)
-	{
-		if (!_gridData[i].Occupied)
-			continue;
-		int xCoord = _gridData[i].Position.x;
-		int yCoord = _gridData[i].Position.y;
-		_gameWindow->PlotTile(xCoord, yCoord, 0, wallColour, wallColour, ' ');
-	}
-}
-
-void Grid::Destroy()
-{
-}
-
 bool Grid::PointCollides(KTools::Vector3<int> other)
 {
+	for (int i = 0; i < _gridDataLength; i++)
+	{
+		if (_gridData[i].OccupiedBy == nullptr)
+			continue;
+		if (_gridData[i].Position == other)
+			return true;
+	}
+	
 	return false;
+}
+
+void Grid::OnCollision(GameObject* otherObject)
+{
+
 }
