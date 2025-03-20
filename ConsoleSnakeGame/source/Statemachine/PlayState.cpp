@@ -3,7 +3,7 @@
 PlayState::PlayState(SnakeGraphics* gameWindow, State* endState)
 	: State("PlayState"), _gameWindow(gameWindow), _endState(endState), _gameWorld(nullptr)
 {
-	
+	AddValidTransitionState(endState);
 }
 
 void PlayState::EnterState()

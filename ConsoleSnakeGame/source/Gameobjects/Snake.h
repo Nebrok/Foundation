@@ -33,6 +33,8 @@ public:
 
 	bool PointCollides(KTools::Vector3<int> otherPoint) override;
 	void OnCollision(GameObject* otherObject) override;
+	KTools::List<KTools::Vector3<int>> GetPositions() override;
+
 
 	void UpdateBody();
 	void UpdatePosition(Snake::Direction direction);

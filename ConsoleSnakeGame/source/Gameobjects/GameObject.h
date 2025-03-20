@@ -1,6 +1,7 @@
 #pragma once
 #include "../SnakeTools/SnakeGraphics.h"
 #include "Vector3.h"
+#include "List.h"
 
 class World;
 
@@ -22,6 +23,7 @@ public:
 	void virtual CheckCollision();
 	bool virtual PointCollides(KTools::Vector3<int> otherPoint) = 0;
 	void virtual OnCollision(GameObject* otherObject) = 0;
+	KTools::List<KTools::Vector3<int>> virtual GetPositions() = 0;
 
 	void virtual Update() = 0;
 	void virtual Render() = 0;

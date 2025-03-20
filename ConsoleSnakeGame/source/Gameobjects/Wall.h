@@ -16,4 +16,6 @@ public:
 
 	bool PointCollides(KTools::Vector3<int> other) override;
 	void OnCollision(GameObject* otherObject) override;
+	KTools::List<KTools::Vector3<int>> GetPositions() override;
+
 };

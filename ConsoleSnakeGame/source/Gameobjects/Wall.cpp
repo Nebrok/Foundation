@@ -33,3 +33,8 @@ bool Wall::PointCollides(KTools::Vector3<int> other)
 void Wall::OnCollision(GameObject* otherObject)
 {
 }
+
+KTools::List<KTools::Vector3<int>> Wall::GetPositions()
+{
+	return KTools::List<KTools::Vector3<int>>();
+}

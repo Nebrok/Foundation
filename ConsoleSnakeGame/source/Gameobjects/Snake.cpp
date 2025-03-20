@@ -75,7 +75,23 @@ void Snake::OnCollision(GameObject* otherObject)
 		{
 			_world->GameOver();
 		}
+		if (typeid(*otherObject) == typeid(Snake))
+		{
+			_world->GameOver();
+		}
 	}
+}
+
+KTools::List<KTools::Vector3<int>> Snake::GetPositions()
+{
+	KTools::List<KTools::Vector3<int>> positions(16);
+	positions.Add(_position);
+	for (int i = 0; _body.Count(); i++)
+	{
+		positions.Add(_body[i]);
+	}
+
+	return positions;
 }
 
 

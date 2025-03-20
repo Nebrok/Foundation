@@ -44,6 +44,7 @@ public:
 	Grid(SnakeGraphics* gameWindow = nullptr);
 	~Grid();
 
+	void ClearTileOfGameobject(int x, int y, GameObject* occupier);
 	void SetTileOccupancy(int x, int y, GameObject* occupier);
 	KTools::List<GameObject*>* GetTileOccupancy(int x, int y);
 

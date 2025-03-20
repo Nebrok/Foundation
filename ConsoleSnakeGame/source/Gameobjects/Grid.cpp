@@ -22,6 +22,11 @@ Grid::~Grid()
 	delete[] _gridData;
 }
 
+void Grid::ClearTileOfGameobject(int x, int y, GameObject* occupier)
+{
+	KTools::List<GameObject*>* occupancy = GetTileOccupancy(x, y);
+}
+
 void Grid::SetTileOccupancy(int x, int y, GameObject* occupier)
 {
 	_gridData[y * _gridCols + x].OccupiedBy->Add(occupier);
