@@ -11,11 +11,15 @@ protected:
 	SnakeGraphics* _gameWindow;
 	World* _world;
 
+	KTools::Vector3<int> _position;
+
+
 
 public:
-	GameObject(SnakeGraphics* gameWindow = nullptr, World* world = nullptr);
+	GameObject(SnakeGraphics* gameWindow = nullptr, World* world = nullptr, KTools::Vector3<int> startingPosition = KTools::Vector3<int>(0, 0, 0));
 	virtual ~GameObject() { }
 
+	void virtual CheckCollision();
 	bool virtual PointCollides(KTools::Vector3<int> otherPoint) = 0;
 	void virtual OnCollision(GameObject* otherObject) = 0;
 

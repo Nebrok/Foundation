@@ -1,6 +1,7 @@
 #include "Gamemanager.h"
 #include "Statemachine/PlayState.h"
 #include "Statemachine/MenuState.h"
+#include "Statemachine/EndState.h"
 
 
 GameManager::GameManager(int windowWidth, int windowHeight, int worldWidth, int worldHeight)
@@ -14,7 +15,9 @@ GameManager::GameManager(int windowWidth, int windowHeight, int worldWidth, int 
 
 
 	//Deletion is handled by the StateMachine destructor
-	State* playState = new PlayState(_gameWindow);
+	State* endState = new EndState(_gameWindow);
+	_possibleStates->Add(endState);
+	State* playState = new PlayState(_gameWindow, endState);
 	_possibleStates->Add(playState);
 	State* menuState = new MenuState(_gameWindow, playState);
 	_possibleStates->Add(menuState);

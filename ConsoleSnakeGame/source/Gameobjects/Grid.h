@@ -26,6 +26,7 @@ class Grid
 		void operator=(const Tile& other)
 		{
 			Position = other.Position;
+			delete OccupiedBy;
 			OccupiedBy = new KTools::List<GameObject*>(*other.OccupiedBy);
 		}
 
@@ -44,6 +45,7 @@ public:
 	~Grid();
 
 	void SetTileOccupancy(int x, int y, GameObject* occupier);
+	KTools::List<GameObject*>* GetTileOccupancy(int x, int y);
 
 	void Update();
 	bool PointCollides(KTools::Vector3<int> other);

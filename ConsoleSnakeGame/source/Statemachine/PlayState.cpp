@@ -1,7 +1,7 @@
 #include "PlayState.h"
 
-PlayState::PlayState(SnakeGraphics* gameWindow) 
-	: State("PlayState"), _gameWindow(gameWindow), _gameWorld(nullptr)
+PlayState::PlayState(SnakeGraphics* gameWindow, State* endState)
+	: State("PlayState"), _gameWindow(gameWindow), _endState(endState), _gameWorld(nullptr)
 {
 	
 }
@@ -28,6 +28,9 @@ void PlayState::ExitState()
 void PlayState::Update()
 {
 	_gameWorld->Update();
+	if (_gameWorld->IsGameOver())
+		SetStateTransition(_endState);
+
 }
 
 void PlayState::Render()

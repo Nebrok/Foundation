@@ -16,7 +16,6 @@ public:
 	PlayerAgent* Brain;
 
 private:
-	KTools::Vector3<int> _position;
 	KTools::List<KTools::Vector3<int>> _body;
 
 	Direction _currentDirection;
@@ -26,19 +25,17 @@ private:
 
 public:
 	Snake();
-	Snake(SnakeGraphics* gameWindow);
 	Snake(SnakeGraphics* gameWindow, World* world, int startingLength, KTools::Vector3<int> startingPosition, PlayerAgent* brain);
 
 	void Update();
 	void Render();
 	void Destroy();
+
 	bool PointCollides(KTools::Vector3<int> otherPoint) override;
-	void OnCollision(GameObject* otherObject);
+	void OnCollision(GameObject* otherObject) override;
 
 	void UpdateBody();
 	void UpdatePosition(Snake::Direction direction);
 	void SetCurrentDirection(Direction);
 	void CheckUpdateDirection();
-
-	bool CheckForCollision();
 };

@@ -1,24 +1,17 @@
+#include <typeinfo>
+#include "../World.h"
 #include "Snake.h"
+#include "Wall.h"
 
 Snake::Snake()
-	: GameObject(nullptr), Brain(nullptr), _currentDirection(Direction::UP)
+	: GameObject(), Brain(nullptr), _currentDirection(Direction::UP)
 {
 
-}
-
-Snake::Snake(SnakeGraphics* gameWindow)
-	: GameObject(gameWindow), Brain(nullptr), _currentDirection(Direction::UP)
-{
-	_position = KTools::Vector3<int>(0);
-	_body = KTools::List<KTools::Vector3<int>>();
-	_currentDirection = Direction::UP;
 }
 
 Snake::Snake(SnakeGraphics* gameWindow, World* world, int startingLength, KTools::Vector3<int> startingPosition, PlayerAgent* brain)
-	: GameObject(gameWindow, world), Brain(brain)
+	: GameObject(gameWindow, world, startingPosition), Brain(brain)
 {
-
-	_position = startingPosition;
 	_body = KTools::List<KTools::Vector3<int>>((size_t)20);
 	_currentDirection = Direction::UP;
 
@@ -36,8 +29,6 @@ void Snake::Update()
 		return;
 	
 	CheckUpdateDirection();
-
-	CheckForCollision();
 
 	UpdateBody();
 	UpdatePosition(_currentDirection);
@@ -80,7 +71,10 @@ void Snake::OnCollision(GameObject* otherObject)
 {
 	if (otherObject->PointCollides(_position))
 	{
-		std::cout << "Snake head colliding with gameobject" << "\n";
+		if (typeid(*otherObject) == typeid(Wall))
+		{
+			_world->GameOver();
+		}
 	}
 }
 
@@ -143,11 +137,6 @@ void Snake::CheckUpdateDirection()
 		_currentDirection = Snake::Direction::RIGHT;
 		break;
 	}
-}
-
-bool Snake::CheckForCollision()
-{
-	return false;
 }
 
 

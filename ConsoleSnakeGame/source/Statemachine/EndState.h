@@ -5,6 +5,10 @@ class SnakeGraphics;
 
 class EndState : public State
 {
+private:
+	SnakeGraphics* _gameWindow;
+
+public:
 	EndState(SnakeGraphics* gameWindow);
 	~EndState();
 

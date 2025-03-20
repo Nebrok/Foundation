@@ -4,7 +4,7 @@
 #include "Gameobjects/Wall.h"
 
 World::World()
-	: _gameObjects(nullptr), _gameWindow(nullptr), _snakeBrain(nullptr), _defaultWall(nullptr)
+	: _gameObjects(nullptr), _gameWindow(nullptr), _snakeBrain(nullptr), _worldGrid(nullptr)
 {
 
 }
@@ -14,7 +14,6 @@ World::World(SnakeGraphics* gameWindow)
 {
 	_worldCols = _gameWindow->GetNumColumns();
 	_worldRows = _gameWindow->GetNumRows();
-	_defaultWall = new Wall(_gameWindow, this);
 
 	_gameObjects = new KTools::List<GameObject*>;
 
@@ -36,9 +35,14 @@ World::~World()
 	{
 		delete (*_gameObjects)[i];
 	}
-	delete _defaultWall;
 	delete _gameObjects;
 	delete _snakeBrain;
+	delete _worldGrid;
+}
+
+void World::GameOver()
+{
+	_gameOver = true;
 }
 
 void World::Update()
@@ -46,12 +50,13 @@ void World::Update()
 
 	for (int i = 0; i < _gameObjects->Count(); i++)
 	{
-		for (int j = 0; j < _gameObjects->Count(); j++)
-		{
-			if (j == i)
-				continue;
-			(*_gameObjects)[i]->OnCollision((*_gameObjects)[j]);
-		}
+		(*_gameObjects)[i]->CheckCollision();
+	}
+
+	if (_gameOver)
+	{
+		std::cout << "Game Over!\n";
+		return;
 	}
 
 	for (int i = 0; i < _gameObjects->Count(); i++)
@@ -77,14 +82,28 @@ void World::CreateLevel(Grid* worldGrid)
 {
 	for (int i = 0; i < _worldCols; i++)
 	{
-		worldGrid->SetTileOccupancy(i, 0, _defaultWall);
-		worldGrid->SetTileOccupancy(i, _worldRows - 1, _defaultWall);
+		KTools::Vector3<int> wall1StartingVec(i, 0, 0);
+		Wall* wall1 = new Wall(_gameWindow, this, wall1StartingVec);
+		_gameObjects->Add((GameObject*)wall1);
+		worldGrid->SetTileOccupancy(wall1StartingVec.x, wall1StartingVec.y, wall1);
+
+		KTools::Vector3<int> wall2StartingVec(i, _worldRows - 1, 0);
+		Wall* wall2 = new Wall(_gameWindow, this, wall2StartingVec);
+		_gameObjects->Add((GameObject*)wall2);
+		worldGrid->SetTileOccupancy(wall2StartingVec.x, wall2StartingVec.y, wall2);
 	}
 
 	for (int i = 0; i < _worldRows; i++)
 	{
-		worldGrid->SetTileOccupancy(0, i, _defaultWall);
-		worldGrid->SetTileOccupancy(_worldCols - 1, i, _defaultWall);
+		KTools::Vector3<int> wall1StartingVec(0, i, 0);
+		Wall* wall1 = new Wall(_gameWindow, this, wall1StartingVec);
+		_gameObjects->Add((GameObject*)wall1);
+		worldGrid->SetTileOccupancy(wall1StartingVec.x, wall1StartingVec.y, wall1);
+
+		KTools::Vector3<int> wall2StartingVec(_worldCols - 1, i, 0);
+		Wall* wall2 = new Wall(_gameWindow, this, wall2StartingVec);
+		_gameObjects->Add((GameObject*)wall2);
+		worldGrid->SetTileOccupancy(wall2StartingVec.x, wall2StartingVec.y, wall2);
 	}
 }
 

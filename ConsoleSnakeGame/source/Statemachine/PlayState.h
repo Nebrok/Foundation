@@ -10,9 +10,10 @@ class PlayState: public State
 private:
 	SnakeGraphics* _gameWindow;
 	World* _gameWorld;
+	State* _endState;
 
 public:
-	PlayState(SnakeGraphics* gameWindow);
+	PlayState(SnakeGraphics* gameWindow, State* endState);
 
 	void EnterState() override;
 	void ExecuteState() override;

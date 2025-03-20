@@ -13,9 +13,9 @@ private:
 	SnakeGraphics* _gameWindow;
 	KTools::List<GameObject*>* _gameObjects;
 	Grid* _worldGrid;
+	bool _gameOver = false;
 
 	PlayerAgent* _snakeBrain;
-	Wall* _defaultWall;
 
 
 	int _worldCols = 0;
@@ -28,9 +28,13 @@ public:
 	World(SnakeGraphics* gameWindow);
 	~World();
 
+	bool IsGameOver() { return _gameOver; }
+	void GameOver();
+
 	void Update();
 	void Render();
 	void KeyDown(int key);
 
+	Grid* & GetGrid() { return _worldGrid; }
 	void CreateLevel(Grid* worldGrid);
 };
