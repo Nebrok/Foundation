@@ -13,11 +13,14 @@ private:
 	State* _endState;
 
 public:
-	PlayState(SnakeGraphics* gameWindow, State* endState);
+	PlayState(SnakeGraphics* gameWindow);
 
 	void EnterState() override;
 	void ExecuteState() override;
 	void ExitState() override;
+
+	void SetEndState(State* endState);
+
 private:
 
 	void Update();

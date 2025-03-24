@@ -13,7 +13,7 @@ private:
 	State* _playState;
 
 public:
-	MenuState(SnakeGraphics* gameWindow, State* playState);
+	MenuState(SnakeGraphics* gameWindow);
 	void EnterState() override;
 	void ExecuteState() override;
 	void ExitState() override;
@@ -21,4 +21,6 @@ public:
 	void Update();
 	void Render();
 	void OnKeyDown(int key);
+
+	void SetPlayState(State* playState);
 };

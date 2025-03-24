@@ -14,13 +14,21 @@ GameManager::GameManager(int windowWidth, int windowHeight, int worldWidth, int 
 	Init();
 
 
+	PlayState* playState = nullptr;
+	MenuState* menuState = nullptr;
+	EndState* endState = nullptr;
+
 	//Deletion is handled by the StateMachine destructor
-	State* endState = new EndState(_gameWindow);
-	_possibleStates->Add(endState);
-	State* playState = new PlayState(_gameWindow, endState);
-	_possibleStates->Add(playState);
-	State* menuState = new MenuState(_gameWindow, playState);
+	menuState = new MenuState(_gameWindow);
 	_possibleStates->Add(menuState);
+	playState = new PlayState(_gameWindow);
+	_possibleStates->Add(playState);
+	endState = new EndState(_gameWindow);
+	_possibleStates->Add(endState);
+
+	menuState->SetPlayState(playState);
+	playState->SetEndState(endState);
+	endState->SetMenuState(menuState);
 
 	BeginState(menuState);
 }

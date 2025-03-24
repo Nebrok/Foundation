@@ -34,7 +34,7 @@ void MainMenu::Render()
 	{
 		Color bg = Color(0,0,0);
 		if (i == _currentHighlightedButton)
-			bg = _wallColour;
+			bg = _highlightColour;
 
 		_gameWindow->PlotText(30, 19 + i, 1, bg, buttonText[i], Color(255, 255, 255), SnakeGraphics::Left);
 	}

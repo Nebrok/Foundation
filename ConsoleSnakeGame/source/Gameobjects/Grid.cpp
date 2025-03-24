@@ -25,6 +25,13 @@ Grid::~Grid()
 void Grid::ClearTileOfGameobject(int x, int y, GameObject* occupier)
 {
 	KTools::List<GameObject*>* occupancy = GetTileOccupancy(x, y);
+	for (int i = 0; i < occupancy->Count(); i++)
+	{
+		if (occupier == (*occupancy)[i])
+		{
+			occupancy->RemoveAt(i);
+		}
+	}
 }
 
 void Grid::SetTileOccupancy(int x, int y, GameObject* occupier)
@@ -52,9 +59,4 @@ bool Grid::PointCollides(KTools::Vector3<int> other)
 	}
 	
 	return false;
-}
-
-void Grid::OnCollision(GameObject* otherObject)
-{
-
 }

@@ -2,6 +2,7 @@
 #include "../World.h"
 #include "Snake.h"
 #include "Wall.h"
+#include "Apple.h"
 
 Snake::Snake()
 	: GameObject(), Brain(nullptr), _currentDirection(Direction::UP)
@@ -15,9 +16,11 @@ Snake::Snake(SnakeGraphics* gameWindow, World* world, int startingLength, KTools
 	_body = KTools::List<KTools::Vector3<int>>((size_t)20);
 	_currentDirection = Direction::UP;
 
+	KTools::Vector3<int> bodyStarting(startingPosition.x, startingPosition.y + 1, 0);
+	
 	for (int i = 0; i < startingLength; i++)
 	{
-		_body.Add(startingPosition);
+		_body.Add(bodyStarting);
 	}
 }
 
@@ -69,16 +72,22 @@ bool Snake::PointCollides(KTools::Vector3<int> otherPoint)
 
 void Snake::OnCollision(GameObject* otherObject)
 {
-	if (otherObject->PointCollides(_position))
+	if (typeid(*otherObject) == typeid(Wall))
 	{
-		if (typeid(*otherObject) == typeid(Wall))
+		_world->GameOver();
+	}
+	if (typeid(*otherObject) == typeid(Snake))
+	{
+		if (otherObject == this)
 		{
-			_world->GameOver();
+			CheckBodyCollision();
+			return;
 		}
-		if (typeid(*otherObject) == typeid(Snake))
-		{
-			_world->GameOver();
-		}
+		_world->GameOver();
+	}
+	if (typeid(*otherObject) == typeid(Apple))
+	{
+		Grow();
 	}
 }
 
@@ -86,14 +95,13 @@ KTools::List<KTools::Vector3<int>> Snake::GetPositions()
 {
 	KTools::List<KTools::Vector3<int>> positions(16);
 	positions.Add(_position);
-	for (int i = 0; _body.Count(); i++)
+	for (int i = 0; i < _body.Count(); i++)
 	{
 		positions.Add(_body[i]);
 	}
 
 	return positions;
 }
-
 
 void Snake::UpdateBody()
 {
@@ -155,4 +163,17 @@ void Snake::CheckUpdateDirection()
 	}
 }
 
+void Snake::CheckBodyCollision()
+{
+	for (int i = 0; i < _body.Count(); i++)
+	{
+		if (_position == _body[i])
+			_world->GameOver();
+	}
+}
 
+void Snake::Grow()
+{
+	KTools::Vector3<int> bodyEnd = _body[_body.Count() - 1];
+	_body.Add(bodyEnd);
+}

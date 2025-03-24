@@ -20,7 +20,7 @@ private:
 
 	Direction _currentDirection;
 
-	int _moveTimeMilliseconds = 150;
+	int _moveTimeMilliseconds = 100;
 	std::chrono::time_point<std::chrono::high_resolution_clock> _lastUpdateTime;
 
 public:
@@ -40,4 +40,7 @@ public:
 	void UpdatePosition(Snake::Direction direction);
 	void SetCurrentDirection(Direction);
 	void CheckUpdateDirection();
+	void CheckBodyCollision();
+	void Grow();
+
 };

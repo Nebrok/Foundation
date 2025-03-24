@@ -50,7 +50,6 @@ public:
 
 	void Update();
 	bool PointCollides(KTools::Vector3<int> other);
-	void OnCollision(GameObject* otherObject);
 
 
 };

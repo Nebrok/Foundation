@@ -1,10 +1,10 @@
 #include "MenuState.h"
 
 
-MenuState::MenuState(SnakeGraphics* gameWindow, State* playState)
-	: State("MenuState"), _gameWindow(gameWindow), _mainMenu(nullptr), _playState(playState)
+MenuState::MenuState(SnakeGraphics* gameWindow)
+	: State("MenuState"), _gameWindow(gameWindow), _mainMenu(nullptr), _playState(nullptr)
 {
-	AddValidTransitionState(_playState);
+
 }
 
 void MenuState::EnterState()
@@ -44,4 +44,10 @@ void MenuState::Render()
 void MenuState::OnKeyDown(int key)
 {
 	_mainMenu->OnKeyDown(key);
+}
+
+void MenuState::SetPlayState(State* playState)
+{
+	_playState = playState;
+	AddValidTransitionState(_playState);
 }

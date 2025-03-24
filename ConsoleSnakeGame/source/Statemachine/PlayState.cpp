@@ -1,9 +1,8 @@
 #include "PlayState.h"
 
-PlayState::PlayState(SnakeGraphics* gameWindow, State* endState)
-	: State("PlayState"), _gameWindow(gameWindow), _endState(endState), _gameWorld(nullptr)
+PlayState::PlayState(SnakeGraphics* gameWindow)
+	: State("PlayState"), _gameWindow(gameWindow), _endState(nullptr), _gameWorld(nullptr)
 {
-	AddValidTransitionState(endState);
 }
 
 void PlayState::EnterState()
@@ -25,11 +24,20 @@ void PlayState::ExitState()
 	delete _gameWorld;
 }
 
+void PlayState::SetEndState(State* endState)
+{
+	_endState = endState;
+	AddValidTransitionState(endState);
+}
+
 void PlayState::Update()
 {
 	_gameWorld->Update();
 	if (_gameWorld->IsGameOver())
+	{
 		SetStateTransition(_endState);
+
+	}
 
 }
 

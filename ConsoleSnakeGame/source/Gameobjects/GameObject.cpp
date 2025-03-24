@@ -2,6 +2,7 @@
 #include "Grid.h"
 #include "../World.h"
 
+
 GameObject::GameObject(SnakeGraphics* gameWindow, World* world, KTools::Vector3<int> startingPosition)
 	: _gameWindow(gameWindow), _isDestroyed(false), _world(world)
 {
@@ -15,9 +16,6 @@ void GameObject::CheckCollision()
 	int gridOccupancyCount = gridOccupancy->Count();
 	for (int i = 0; i < gridOccupancyCount; i++)
 	{
-		if ((*gridOccupancy)[i] == this)
-			continue;
-
 		OnCollision((*gridOccupancy)[i]);
 	}
 }

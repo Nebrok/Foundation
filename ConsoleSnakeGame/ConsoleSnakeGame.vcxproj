@@ -134,6 +134,7 @@
     <ClCompile Include="source\Agent\BaseAgent.cpp" />
     <ClCompile Include="source\EndScreen.cpp" />
     <ClCompile Include="source\Gamemanager.cpp" />
+    <ClCompile Include="source\Gameobjects\Apple.cpp" />
     <ClCompile Include="source\Gameobjects\GameObject.cpp" />
     <ClCompile Include="source\Gameobjects\Grid.cpp" />
     <ClCompile Include="source\Gameobjects\Snake.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="source\EndScreen.h" />
     <ClInclude Include="source\Gamemanager.h" />
     <ClInclude Include="source\GameObject.h" />
+    <ClInclude Include="source\Gameobjects\Apple.h" />
     <ClInclude Include="source\Gameobjects\GameObject.h" />
     <ClInclude Include="source\Gameobjects\Grid.h" />
     <ClInclude Include="source\Gameobjects\Snake.h" />

@@ -9,11 +9,14 @@ class Wall;
 
 class World
 {
+	int Score = 0;
+
 private:
 	SnakeGraphics* _gameWindow;
 	KTools::List<GameObject*>* _gameObjects;
 	Grid* _worldGrid;
 	bool _gameOver = false;
+
 
 	PlayerAgent* _snakeBrain;
 
@@ -37,4 +40,6 @@ public:
 
 	Grid* & GetGrid() { return _worldGrid; }
 	void CreateLevel(Grid* worldGrid);
+	void UpdateApple();
+
 };

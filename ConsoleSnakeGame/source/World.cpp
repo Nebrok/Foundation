@@ -2,6 +2,7 @@
 #include "Gameobjects/Snake.h"
 #include "Gameobjects/Grid.h"
 #include "Gameobjects/Wall.h"
+#include "Gameobjects/Apple.h"
 
 World::World()
 	: _gameObjects(nullptr), _gameWindow(nullptr), _snakeBrain(nullptr), _worldGrid(nullptr)
@@ -20,12 +21,15 @@ World::World(SnakeGraphics* gameWindow)
 	_worldGrid = new Grid(_gameWindow);
 	CreateLevel(_worldGrid);
 
-
+	int newX = (rand() % (_worldCols - 2)) + 1;
+	int newY = (rand() % (_worldRows - 2)) + 1;
+	Apple* apple = new Apple(_gameWindow, this, KTools::Vector3<int>(newX, newY, 0));
 
 	_snakeBrain = new PlayerAgent();
-	Snake* snake = new Snake(_gameWindow, this, 4, KTools::Vector3<int>(30, 20, 0), _snakeBrain);
+	Snake* snake = new Snake(_gameWindow, this, 3, KTools::Vector3<int>(30, 20, 0), _snakeBrain);
 
 	_gameObjects->Add((GameObject*)snake);
+	_gameObjects->Add((GameObject*)apple);
 
 }
 
@@ -53,6 +57,19 @@ void World::Update()
 		(*_gameObjects)[i]->CheckCollision();
 	}
 
+	//Clears the grid of snake occupancy
+	for (int i = 0; i < _gameObjects->Count(); i++)
+	{
+		if (typeid(*(*_gameObjects)[i]) == typeid(Snake))
+		{
+			KTools::List<KTools::Vector3<int>> positions = (*_gameObjects)[i]->GetPositions();
+			for (int j = 0; j < positions.Count(); j++)
+			{
+				_worldGrid->ClearTileOfGameobject(positions[j].x, positions[j].y, (*_gameObjects)[i]);
+			}
+		}
+	}
+
 	if (_gameOver)
 	{
 		std::cout << "Game Over!\n";
@@ -63,6 +80,19 @@ void World::Update()
 	{
 		(*_gameObjects)[i]->Update();
 	}
+
+	//Adds snake occupancy back to grid
+	for (int i = 0; i < _gameObjects->Count(); i++)
+	{
+		if (typeid(*(*_gameObjects)[i]) == typeid(Snake))
+		{
+			KTools::List<KTools::Vector3<int>> positions = (*_gameObjects)[i]->GetPositions();
+			for (int j = 0; j < positions.Count(); j++)
+			{
+				_worldGrid->SetTileOccupancy(positions[j].x, positions[j].y, (*_gameObjects)[i]);
+			}
+		}
+	}
 }
 
 void World::Render()
@@ -71,6 +101,12 @@ void World::Render()
 	{
 		(*_gameObjects)[i]->Render();
 	}
+
+	wchar_t score[4];
+	_itow_s(Score, score, 10);
+	_gameWindow->PlotText(0, 0, 1, _wallColour, L"Score: ", Color(255, 255, 255), SnakeGraphics::Left);
+	_gameWindow->PlotText(10, 0, 1, _wallColour, score, Color(255, 255, 255), SnakeGraphics::Left);
+
 }
 
 void World::KeyDown(int key)
@@ -104,6 +140,21 @@ void World::CreateLevel(Grid* worldGrid)
 		Wall* wall2 = new Wall(_gameWindow, this, wall2StartingVec);
 		_gameObjects->Add((GameObject*)wall2);
 		worldGrid->SetTileOccupancy(wall2StartingVec.x, wall2StartingVec.y, wall2);
+	}
+}
+
+void World::UpdateApple()
+{
+	for (int i = 0; i < _gameObjects->Count(); i++)
+	{
+		if (typeid(*(*_gameObjects)[i]) == typeid(Apple))
+		{
+			int newX = (rand() % (_worldCols - 2)) + 1;
+			int newY = (rand() % (_worldRows - 2)) + 1;
+
+			((Apple*)(*_gameObjects)[i])->SetPosition(newX, newY);
+			Score++;
+		}
 	}
 }
 

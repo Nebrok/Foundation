@@ -15,6 +15,7 @@ private:
 	int _worldRows;
 
 
+	Color _highlightColour = Color(10, 125, 10);
 	Color _wallColour = Color(15, 200, 15);
 
 	bool _startGame = false;
