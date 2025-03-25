@@ -1,3 +1,5 @@
+#include <fstream>
+#include <string>
 #include "World.h"
 #include "Gameobjects/Snake.h"
 #include "Gameobjects/Grid.h"
@@ -142,6 +144,12 @@ void World::CreateLevel(Grid* worldGrid)
 		worldGrid->SetTileOccupancy(wall2StartingVec.x, wall2StartingVec.y, wall2);
 	}
 }
+
+bool* World::LoadLevelFromFile()
+{
+
+}
+
 
 void World::UpdateApple()
 {

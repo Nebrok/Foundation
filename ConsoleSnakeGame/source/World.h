@@ -17,6 +17,7 @@ private:
 	Grid* _worldGrid;
 	bool _gameOver = false;
 
+	int currentLevel = 1;
 
 	PlayerAgent* _snakeBrain;
 
@@ -40,6 +41,8 @@ public:
 
 	Grid* & GetGrid() { return _worldGrid; }
 	void CreateLevel(Grid* worldGrid);
+	bool* LoadLevelFromFile();
+
 	void UpdateApple();
 
 };

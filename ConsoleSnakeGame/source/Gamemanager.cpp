@@ -71,7 +71,6 @@ void GameManager::Run()
 			//std::cout << "Time Diff in microseconds: " << timeDiffMicroseconds << "\n";
 			_lastUpdateTime = std::chrono::high_resolution_clock::now();
 		}
-		
 	}
 }
 
