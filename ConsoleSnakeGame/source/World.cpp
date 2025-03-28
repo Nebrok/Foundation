@@ -147,7 +147,8 @@ void World::CreateLevel(Grid* worldGrid)
 
 bool* World::LoadLevelFromFile()
 {
-
+	bool level[10];
+	return level;
 }
 
 

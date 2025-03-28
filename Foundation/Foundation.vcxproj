@@ -142,6 +142,7 @@
     <ClInclude Include="source\ownLib\Matrix.h" />
     <ClInclude Include="source\ownLib\Timer.h" />
     <ClInclude Include="source\ownLib\Vector3.h" />
+    <ClInclude Include="source\TestingVariablePacking.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

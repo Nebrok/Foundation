@@ -44,5 +44,8 @@
     <ClInclude Include="source\NeuralNetworkTest\NeuralNetwork.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\TestingVariablePacking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

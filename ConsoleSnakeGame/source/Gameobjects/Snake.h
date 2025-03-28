@@ -20,7 +20,7 @@ private:
 
 	Direction _currentDirection;
 
-	int _moveTimeMilliseconds = 100;
+	int _moveTimeMilliseconds = 50;
 	std::chrono::time_point<std::chrono::high_resolution_clock> _lastUpdateTime;
 
 public:
