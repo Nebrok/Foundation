@@ -21,6 +21,9 @@
     <ClCompile Include="source\NeuralNetworkTest\NeuralNetwork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\ownLib\SimplexNoise.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\ownLib\Matrix.h">
@@ -45,6 +48,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\TestingVariablePacking.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\ownLib\SimplexNoise.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

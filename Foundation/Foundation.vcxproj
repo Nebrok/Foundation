@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\NeuralNetworkTest\NeuralNetwork.cpp" />
+    <ClCompile Include="source\ownLib\SimplexNoise.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\NeuralNetworkTest\NeuralNetwork.h" />
@@ -140,6 +141,7 @@
     <ClInclude Include="source\ownLib\LibraryInclude.h" />
     <ClInclude Include="source\ownLib\List.h" />
     <ClInclude Include="source\ownLib\Matrix.h" />
+    <ClInclude Include="source\ownLib\SimplexNoise.h" />
     <ClInclude Include="source\ownLib\Timer.h" />
     <ClInclude Include="source\ownLib\Vector3.h" />
     <ClInclude Include="source\TestingVariablePacking.h" />

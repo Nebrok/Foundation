@@ -27,7 +27,7 @@ void RunPackingTest()
 {
 	KTools::Timer timer;
 
-	const long long size = 99999999;
+	const long long size = 1000000;
 
 	std::cout << "Size of Inefficient (bytes): " << sizeof(Inefficient) << "\n";
 	std::cout << "Size of Efficient (bytes): " << sizeof(Efficient) << "\n";

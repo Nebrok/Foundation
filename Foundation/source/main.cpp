@@ -64,6 +64,5 @@ int main(int argc, char* argv[])
 
 	RunPackingTest();
 
-
 	return 0;
 }

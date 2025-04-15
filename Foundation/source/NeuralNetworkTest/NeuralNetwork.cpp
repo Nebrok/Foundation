@@ -5,7 +5,6 @@ double FASigmoid(double input)
 	return input / (1 + abs(input));
 }
 
-
 void FASigmoidOnMatrix(KTools::Matrix<double>& input)
 {
 	for (int i = 0; i < input.GetRows(); i++)
@@ -32,7 +31,6 @@ NeuralNetwork::~NeuralNetwork()
 	delete _weightsInputToHidden;
 	delete _weightsHiddenToOutput;
 }
-
 
 void NeuralNetwork::PrintNetwork()
 {
